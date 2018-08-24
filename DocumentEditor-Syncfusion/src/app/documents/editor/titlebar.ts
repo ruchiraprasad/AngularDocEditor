@@ -13,7 +13,11 @@ export class TitleBar {
     private export: DropDownButton;
     private print: Button;
     private open: Button;
+    private testSave: Button;
+    private testOpen: Button;
     private documentEditor: DocumentEditor;
+    private testDoc: string;
+
     constructor(element: HTMLElement, docEditor: DocumentEditor, isShareNeeded: Boolean) {
         //initializes title bar elements.
         this.tileBarDiv = element;
@@ -45,6 +49,10 @@ export class TitleBar {
         } else {
             this.open.element.style.display = 'none';
         }
+
+
+        this.testOpen = this.addButton('', 'Test Open', btnStyles, 'de-test', 'Test Open', false) as Button;
+        this.testSave = this.addButton('', 'Test Save', btnStyles, 'de-test', 'Test Save', false) as Button;
     }
     private setTooltipForPopup(): void {
         // tslint:disable-next-line:max-line-length
@@ -80,6 +88,9 @@ export class TitleBar {
         this.documentTitleContentEditor.addEventListener('click', (): void => {
             this.updateDocumentEditorTitle();
         });
+
+        this.testOpen.element.addEventListener('click', this.onTestOpen);
+        this.testSave.element.addEventListener('click', this.onTestSave);
     }
     private updateDocumentEditorTitle = (): void => {
         this.documentTitleContentEditor.contentEditable = 'true';
@@ -108,8 +119,8 @@ export class TitleBar {
         }
     }
     private onPrint = (): void => {
-        //console.log(this.documentEditor.serialize())
-        this.documentEditor.print();
+        console.log(this.documentEditor.serialize())
+        //this.documentEditor.print();
     }
     private onExportClick = (args: MenuEventArgs): void => {
         let value: string = args.item.id;
@@ -125,5 +136,14 @@ export class TitleBar {
     private save = (format: string): void => {
         // tslint:disable-next-line:max-line-length
         this.documentEditor.save(this.documentEditor.documentName === '' ? 'sample' : this.documentEditor.documentName, format as FormatType);
+    }
+
+    private onTestSave = (): void => {
+        console.log(this.documentEditor.serialize());
+        this.testDoc = this.documentEditor.serialize();
+    }
+
+    private onTestOpen = (): void => {
+        this.documentEditor.open(this.testDoc);
     }
 }

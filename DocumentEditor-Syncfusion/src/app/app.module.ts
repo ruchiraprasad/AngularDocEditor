@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA, Type  } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ButtonModule, CheckBoxModule } from '@syncfusion/ej2-ng-buttons';
 import { DropDownButtonModule, SplitButtonModule } from '@syncfusion/ej2-ng-splitbuttons';
@@ -28,7 +29,7 @@ import { EditorComponent } from './documents/editor/editor.component';
     EditorComponent
   ],
   imports: [
-    BrowserModule, HttpModule, JsonpModule, ButtonModule, CheckBoxModule, DropDownButtonModule, SplitButtonModule, 
+    BrowserModule, HttpModule, HttpClientModule, JsonpModule, ButtonModule, CheckBoxModule, DropDownButtonModule, SplitButtonModule, 
     NumericTextBoxModule, ColorPickerModule, UploaderModule, SliderModule, ToolbarModule, TabModule, MultiSelectModule,
     DiagramAllModule, SymbolPaletteAllModule, OverviewAllModule, ComboBoxModule, DropDownListModule, DropDownListAllModule,
     FormsModule, ReactiveFormsModule, DocumentEditorAllModule, DialogModule, SharedModule
