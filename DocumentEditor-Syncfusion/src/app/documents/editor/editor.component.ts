@@ -441,6 +441,9 @@ export class EditorComponent {
             case 'useLocalClipboard':
                 this.onUseLocalClipboard();
                 break;
+            case 'newtemplate':
+                this.newDocument();
+                break;
         }
     }
     public toolBarRendered = (): void => {
@@ -932,7 +935,7 @@ export class EditorComponent {
         if (selectedItem.length > 0) {
             let selectedItemId: string = selectedItem[0].id;
             if (selectedItemId === 'Blank') {
-                this.documentEditor.openBlank();
+                this.documentEditor.openBlank(); //this.documentEditor.serialize())
             } else {
                 this.documentEditor.open(this.templateLoader.getTemplate(selectedItemId));
             }
