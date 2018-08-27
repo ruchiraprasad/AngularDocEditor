@@ -17,6 +17,7 @@ export class TitleBar {
     private testOpen: Button;
     private documentEditor: DocumentEditor;
     private testDoc: string;
+    private updatedStr: string = "";
 
     constructor(element: HTMLElement, docEditor: DocumentEditor, isShareNeeded: Boolean) {
         //initializes title bar elements.
@@ -141,9 +142,11 @@ export class TitleBar {
     private onTestSave = (): void => {
         console.log(this.documentEditor.serialize());
         this.testDoc = this.documentEditor.serialize();
+        this.updatedStr = "Save";
     }
 
     private onTestOpen = (): void => {
         this.documentEditor.open(this.testDoc);
+        alert(this.updatedStr);
     }
 }

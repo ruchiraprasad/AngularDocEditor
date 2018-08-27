@@ -48,6 +48,7 @@ import { Query } from '@syncfusion/ej2-data';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { TemplateListItem } from './models/templateListItem';
+import { Template } from '../shared/template.model';
 /**
  * Document Editor Component
  */
@@ -890,21 +891,27 @@ export class EditorComponent {
     }
     private initializeCreateNewDocumentDialog = (): void => {
 
-          this.httpClient.get<TemplateListItem[]>('http://localhost:52061/api/values/GetTemplateList')
-            .subscribe(data => {
+          //this.httpClient.get<TemplateListItem[]>('http://localhost:52061/api/values/GetTemplateList')
+          this.httpClient.get<Template[]>('http://localhost:52061/api/templates')
+            .subscribe(data => { 
+   
 
                 this.cntnt += '<div id=\'mainContent\'>';
-                this.cntnt += '<input type=\'text\' class=\'e-input\' id=\'docText\' name=\'fileName\' placeholder=\'Enter file name\'>';
-                this.cntnt += '<div id=\'templateDiv\'>';
+                this.cntnt += "<input type='text' class='e-input' id='docText' name='fileName' placeholder='Enter file name'>";
+                this.cntnt += "<div id=templateDiv><div id='blanktemplate' class='template'><div id='Blank' class='innerTemplate'>";
+                this.cntnt += "<label for='blank' class='labelDiv'>Blank</label></div>";
+
+                // this.cntnt += '<input type=\'text\' class=\'e-input\' id=\'docText\' name=\'fileName\' placeholder=\'Enter file name\'>';
+                // this.cntnt += '<div id=\'templateDiv\'>';
 
                 data.forEach((item, index) => {
                     
                     if (index % 3 == 0)
                         this.cntnt += '<br/><br/>';
 
-                    this.cntnt += '<div id=\'' + item.containerId + '\'  class=\'template\'>';
-                    this.cntnt += '<div id=\'' + item.name + '\' class=\'innerTemplate\'>' +  item.content + '</div>';
-                    this.cntnt += '<label for=\'' + item.name + '\' class=\'labelDiv\'>' +  item.displayName + '</label>'
+                    this.cntnt += '<div id=\'' + item.id + '\'  class=\'template\'>';
+                    this.cntnt += '<div id=\'' + item.id + '\' class=\'innerTemplate\'>' +  item.templateName + '</div>';
+                    this.cntnt += '<label for=\'' + item.templateName + '\' class=\'labelDiv\'>' +  item.templateName + '</label>'
                     this.cntnt += '</div>';
                 })
                 this.cntnt += '</div></div>';
@@ -967,10 +974,12 @@ export class EditorComponent {
             if (selectedItemId === 'Blank') {
                 this.documentEditor.openBlank(); //this.documentEditor.serialize())
             } else {
-
-                this.httpClient.get<string>('http://localhost:52061/api/values/GetTemplate/' + selectedItemId)
+                
+                //this.httpClient.get<string>('http://localhost:52061/api/values/GetTemplate/' + selectedItemId)
+                this.httpClient.get<string>('http://localhost:52061/api/templates/' + selectedItemId)
                 .subscribe(data => {
                     //console.log(data);
+                    console.log(data)
                     this.documentEditor.open(JSON.stringify(data));
                 });
 

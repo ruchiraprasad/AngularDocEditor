@@ -1,0 +1,11 @@
+C:\Projects\ASPIT\Documents_POC\AngularDocEditor\DocumentEditor.API\bin\Debug\netcoreapp2.0\DocumentEditor.API.deps.json
+C:\Projects\ASPIT\Documents_POC\AngularDocEditor\DocumentEditor.API\bin\Debug\netcoreapp2.0\DocumentEditor.API.runtimeconfig.json
+C:\Projects\ASPIT\Documents_POC\AngularDocEditor\DocumentEditor.API\bin\Debug\netcoreapp2.0\DocumentEditor.API.runtimeconfig.dev.json
+C:\Projects\ASPIT\Documents_POC\AngularDocEditor\DocumentEditor.API\bin\Debug\netcoreapp2.0\DocumentEditor.API.dll
+C:\Projects\ASPIT\Documents_POC\AngularDocEditor\DocumentEditor.API\bin\Debug\netcoreapp2.0\DocumentEditor.API.pdb
+C:\Projects\ASPIT\Documents_POC\AngularDocEditor\DocumentEditor.API\obj\Debug\netcoreapp2.0\DocumentEditor.API.csprojAssemblyReference.cache
+C:\Projects\ASPIT\Documents_POC\AngularDocEditor\DocumentEditor.API\obj\Debug\netcoreapp2.0\DocumentEditor.API.csproj.CoreCompileInputs.cache
+C:\Projects\ASPIT\Documents_POC\AngularDocEditor\DocumentEditor.API\obj\Debug\netcoreapp2.0\DocumentEditor.API.AssemblyInfoInputs.cache
+C:\Projects\ASPIT\Documents_POC\AngularDocEditor\DocumentEditor.API\obj\Debug\netcoreapp2.0\DocumentEditor.API.AssemblyInfo.cs
+C:\Projects\ASPIT\Documents_POC\AngularDocEditor\DocumentEditor.API\obj\Debug\netcoreapp2.0\DocumentEditor.API.dll
+C:\Projects\ASPIT\Documents_POC\AngularDocEditor\DocumentEditor.API\obj\Debug\netcoreapp2.0\DocumentEditor.API.pdb
