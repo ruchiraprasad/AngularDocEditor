@@ -48,6 +48,10 @@ import { Query } from '@syncfusion/ej2-data';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { TemplateListItem } from './models/templateListItem';
+import { DocumentEditorService } from './shared/editor.service';
+
+
+
 import { Template } from '../shared/template.model';
 /**
  * Document Editor Component
@@ -155,7 +159,7 @@ export class EditorComponent {
 
     private cntnt = '';
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient, private documentEditorService: DocumentEditorService) {}
     
     public nodePropertyChange(args: { [key: string]: Object }): void {
         if (!this.isRetrieving) {
