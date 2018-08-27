@@ -404,13 +404,15 @@ export class EditorComponent {
     public onToolbarClick = (args: ClickEventArgs) => {
         switch (args.item.id) {
             case 'new':
+                this.insertFieldProperties.show = false;
                 this.isTemplateEditing = false;
                 this.titleBar.saveTemplate=false;
                 this.enableIcons();
                 this.newDocument();
                 break;
             case 'open':
-                //opens file explorer                
+                //opens file explorer
+                this.insertFieldProperties.show = false;             
                 this.file.value = '';
                 this.file.click();
                 break;
@@ -463,6 +465,7 @@ export class EditorComponent {
                 this.onUseLocalClipboard();
                 break;
             case 'newtemplate':
+                this.insertFieldProperties.show = false;
                 this.isTemplateEditing=true;
                 this.newDocument();
                 break;
@@ -1015,7 +1018,6 @@ export class EditorComponent {
                 this.documentEditor.openBlank(); //this.documentEditor.serialize())
                 this.titleBar.saveTemplate=true;
             } else {
-     
                 this.httpClient.get<string>('http://localhost:52061/api/templates/' + selectedItemId)
                 .subscribe(data => {
                     if(this.isTemplateEditing){
@@ -1026,8 +1028,6 @@ export class EditorComponent {
                     console.log(data)
                     this.documentEditor.open(JSON.stringify(data));
                 });
-
-                //this.documentEditor.open(this.templateLoader.getTemplate(selectedItemId));
             }
         } else {
             this.documentEditor.openBlank();
