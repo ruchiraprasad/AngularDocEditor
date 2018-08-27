@@ -74,6 +74,11 @@ namespace DocumentEditor.API.Controllers
                     default:
                         break;
                 }
+
+            }
+            return result.ToString();
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody]Template model)
         {
