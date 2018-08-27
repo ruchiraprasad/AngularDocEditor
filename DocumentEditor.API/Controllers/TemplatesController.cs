@@ -37,7 +37,7 @@ namespace DocumentEditor.API.Controllers
             }
         }
 
-        [HttpGet("{id}/document")]
+        [HttpGet("document/{id}")]
         public IActionResult GetDocument(int id)
         {
             using (var db = new TestDocDbContext())

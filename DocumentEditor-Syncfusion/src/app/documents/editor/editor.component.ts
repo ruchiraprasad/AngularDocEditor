@@ -1018,7 +1018,14 @@ export class EditorComponent {
                 this.documentEditor.openBlank(); //this.documentEditor.serialize())
                 this.titleBar.saveTemplate=true;
             } else {
-                this.httpClient.get<string>('http://localhost:52061/api/templates/' + selectedItemId)
+                let urlStr = "";
+                if(this.isTemplateEditing){
+                    urlStr="http://localhost:52061/api/templates/"
+                }
+                else{
+                    urlStr="http://localhost:52061/api/templates/document/"
+                }
+                this.httpClient.get<string>(urlStr + selectedItemId)
                 .subscribe(data => {
                     if(this.isTemplateEditing){
                         this.titleBar.saveTemplate=true;
