@@ -344,31 +344,21 @@
                         </div>
                     </div>
                     <div id="insertField_properties_pane" [style.display]="insertFieldProperties.show?'block':'none'">
-                            <div id="_header_footer" style="padding:10px;">
-                                    <label class="e-de-prop-header-label">Insert Field</label>
-                                    <span class="e-de-icon-Close" (click)="insertFieldProperties.onClose()" id="_header_footer_close" style="display:inline-block;float:right;cursor:pointer"></span>
+                        <div id="_header_footer" style="padding:10px;">
+                            <label class="e-de-prop-header-label">Insert Field</label>
+                            <span class="e-de-icon-Close" (click)="insertFieldProperties.onClose()" id="_header_footer_close" style="display:inline-block;float:right;cursor:pointer"></span>
+                        </div>
+                        <div style="padding-left: 10px">
+                            <div *ngFor="let category of insertFieldProperties.fields">
+                                <label class="e-de-prop-label" style="height:20px;">{{category.category}}</label>
+                                <div *ngFor="let field of category.fields">
+                                    <button ejs-button id="container_tableOutlineBorder" #outline_border style="height:34px" title="Outside borders" cssClass="e-de-prop-font-button field-button"
+                                    (click)="insertFieldProperties.onInsertField(field)">{{field.name}}</button><br/><br/>
                                 </div>
-                                <div style="padding-left: 10px">
-                                    <label class="e-de-prop-label" style="height:20px;">Patient</label>
-                                    <div id="header_footer_properties_optionsDiv">
-                                        <button ejs-button id="container_tableOutlineBorder" #outline_border style="height:34px" title="Outside borders" cssClass="e-de-prop-font-button field-button"
-                                            (click)="insertFieldProperties.onInsertField('{@@name}')">Patient's Name</button><br/><br/>
-                                        <button ejs-button id="container_tableOutlineBorder" #outline_border style="height:34px" title="Outside borders" cssClass="e-de-prop-font-button field-button"
-                                            (click)="insertFieldProperties.onInsertField('{@@last-appintment}')">Last Appointment
-                                            Data
-                                        </button>
-                                    </div>
-                                    <br/>
-                                    <div class="e-de-prop-header-line" style="margin-top:7px;"></div>
-                                    <label class="e-de-prop-label" style="height:20px;">General</label>
-                                    <div id="header_footer_properties_optionsDiv">
-                                        <button ejs-button id="container_tableOutlineBorder" #outline_border style="height:34px" title="Outside borders" cssClass="e-de-prop-font-button field-button"
-                                            (click)="insertFieldProperties.onInsertField('{@@date}')">Date</button>
-                                    </div>
-                                </div>
-
-
-
+                                <div class="e-de-prop-header-line" style="margin-top:7px;"></div>
+                                <br/>
+                            </div>
+                        </div>
                     </div>
                     <div id="headerfooter_properties_pane" [style.display]="headerFooterProperties.show?'block':'none'">
                         <div id="_header_footer" style="padding:10px;">
