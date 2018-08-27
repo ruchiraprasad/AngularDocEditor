@@ -144,6 +144,7 @@ export class EditorComponent {
     public tableTextProperties: TableTextPropertiesModel = new TableTextPropertiesModel(this);
     public tableParagraphProperties: TableParagraphPropertiesModel = new TableParagraphPropertiesModel(this);
     public propertiesPane: PropertiesPaneModel = new PropertiesPaneModel();
+    public insertFieldProperties: InsertFieldPropertiesModel = new InsertFieldPropertiesModel(this);
 
     @ViewChild('heightNumericBox')
     public heightNumericBox: NumericTextBox;
@@ -455,6 +456,9 @@ export class EditorComponent {
             case 'newtemplate':
                 this.newDocument();
                 break;
+            case 'field':
+                this.insertField();
+                break;
         }
     }
     public toolBarRendered = (): void => {
@@ -661,6 +665,12 @@ export class EditorComponent {
     }
     public showPropertiesPaneOnSelection = (): void => {
         let currentContext: string = this.documentEditor.selection.contextType;
+
+        if (this.insertFieldProperties.show === true)
+        {
+              return;
+        }
+
         let isInHeaderFooter: boolean = currentContext.indexOf('Header') >= 0
             || currentContext.indexOf('Footer') >= 0;
         if (!isInHeaderFooter && !this.showPropertiesPane) {
@@ -772,6 +782,7 @@ export class EditorComponent {
                 this.headerFooterProperties.show = false;
                 this.imageProperties.show = false;
                 this.tocProperties.showTocPane(false);
+                this.insertFieldProperties.show = false;
                 break;
             case 'table':
                 this.isRetrieving = true;
@@ -783,6 +794,7 @@ export class EditorComponent {
                 this.headerFooterProperties.show = false;
                 this.imageProperties.show = false;
                 this.tocProperties.showTocPane(false);
+                this.insertFieldProperties.show = false;
                 break;
             case 'image':
                 this.imageProperties.show = true;
@@ -793,6 +805,7 @@ export class EditorComponent {
                 this.textProperties.show = false;
                 this.headerFooterProperties.show = false;
                 this.tocProperties.showTocPane(false);
+                this.insertFieldProperties.show = false;
                 break;
             case 'headerfooter':
                 this.showHFPropertiesPaneHelper();
@@ -802,10 +815,22 @@ export class EditorComponent {
                 this.tableProperties.show = false;
                 this.textProperties.show = false;
                 this.tocProperties.showTocPane(false);
+                this.insertFieldProperties.show = false;
                 break;
             case 'toc':
                 this.tocProperties.showTocPane(true);
                 this.enableDisablePropertyPaneButton(false);
+                this.headerFooterProperties.show = false;
+                this.imageProperties.show = false;
+                this.tableProperties.show = false;
+                this.textProperties.show = false;
+                this.insertFieldProperties.show = false;
+                break;
+            case 'field':
+                this.insertFieldProperties.show = true;
+                // this.tocProperties.showTocPane(true);
+                this.enableDisablePropertyPaneButton(false);
+                this.tocProperties.show = false;
                 this.headerFooterProperties.show = false;
                 this.imageProperties.show = false;
                 this.tableProperties.show = false;
@@ -993,6 +1018,10 @@ export class EditorComponent {
             this.documentEditor.openBlank();
         }
         this.newDialog.hide();
+    }
+
+    private insertField = (): void => {
+        this.showProperties('field');
     }
     //#endregion
 }
@@ -1631,6 +1660,24 @@ export class ImagePropertiesModel {
             this.propertyChange({ propertyName: propertyName, propertyValue: propertyValue });
         }
     }
+}
+export class InsertFieldPropertiesModel {
+    show: boolean = false;
+    documentEditorComponent: EditorComponent;
+
+    constructor(component: EditorComponent) {
+        this.documentEditorComponent = component;
+    }
+
+    public onClose(): void {
+        this.show = false;
+        this.documentEditorComponent.showPropertiesPaneOnSelection();
+    }
+
+    public onInsertField(value: string): void {
+       this.documentEditorComponent.documentEditor.editor.insertText(value, false);
+    }
+
 }
 export class HeaderFooterPropertiesModel {
     show: boolean = false;
