@@ -14,5 +14,6 @@ namespace DocumentEditor.API.Models
         }
 
         public DbSet<Template> Templates { get; set; }
+        public DbSet<Field> Fields { get; set; }
     }
 }

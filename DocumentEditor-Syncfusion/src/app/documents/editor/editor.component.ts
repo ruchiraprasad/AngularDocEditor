@@ -53,6 +53,7 @@ import { DocumentEditorService } from './shared/editor.service';
 
 
 import { Template } from '../shared/template.model';
+import { FieldCategory, Field } from './models/field';
 /**
  * Document Editor Component
  */
@@ -162,7 +163,7 @@ export class EditorComponent {
 
     private cntnt = '';
 
-    constructor(private httpClient: HttpClient, private documentEditorService: DocumentEditorService) {}
+    constructor(private httpClient: HttpClient, public documentEditorService: DocumentEditorService) {}
     
     public nodePropertyChange(args: { [key: string]: Object }): void {
         if (!this.isRetrieving) {
@@ -206,7 +207,7 @@ export class EditorComponent {
         }
         setTimeout(() => {
             this.documentEditor.focusIn();
-        })
+        });
     }
     getHighLightColor(color: string): HighlightColor {
         switch (color) {
@@ -262,7 +263,11 @@ export class EditorComponent {
 
         this.tocProperties.documentEditor = this.documentEditor;
         this.tocProperties.initializeTocPane();
+
+        this.insertFieldProperties.loadFields();
     }
+
+
     public initHelperModules(): void {
         this.documentLoader = new DocumentLoader(this.documentEditor);
         this.templateLoader = new TemplateLoader();
@@ -1673,7 +1678,9 @@ export class ImagePropertiesModel {
 }
 export class InsertFieldPropertiesModel {
     show: boolean = false;
+    public fields: FieldCategory[];
     documentEditorComponent: EditorComponent;
+    service: DocumentEditorService;
 
     constructor(component: EditorComponent) {
         this.documentEditorComponent = component;
@@ -1684,8 +1691,15 @@ export class InsertFieldPropertiesModel {
         this.documentEditorComponent.showPropertiesPaneOnSelection();
     }
 
-    public onInsertField(value: string): void {
-       this.documentEditorComponent.documentEditor.editor.insertText(value, false);
+    public loadFields() {
+        this.documentEditorComponent.documentEditorService.getFields().subscribe(data => {
+            console.log(data);
+            this.fields = data;
+        });
+    }
+
+    public onInsertField(value: Field): void {
+       this.documentEditorComponent.documentEditor.editor.insertText(value.displayName, false);
     }
 
 }
