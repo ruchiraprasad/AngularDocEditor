@@ -48,6 +48,10 @@ import { Query } from '@syncfusion/ej2-data';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { TemplateListItem } from './models/templateListItem';
+import { DocumentEditorService } from './shared/editor.service';
+
+
+
 /**
  * Document Editor Component
  */
@@ -154,7 +158,7 @@ export class EditorComponent {
 
     private cntnt = '';
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient, private documentEditorService: DocumentEditorService) {}
     
     public nodePropertyChange(args: { [key: string]: Object }): void {
         if (!this.isRetrieving) {
@@ -890,7 +894,7 @@ export class EditorComponent {
     }
     private initializeCreateNewDocumentDialog = (): void => {
 
-          this.httpClient.get<TemplateListItem[]>('http://localhost:52061/api/values/GetTemplateList')
+        this.documentEditorService.getTemplateList()        
             .subscribe(data => {
 
                 this.cntnt += '<div id=\'mainContent\'>';
@@ -968,7 +972,7 @@ export class EditorComponent {
                 this.documentEditor.openBlank(); //this.documentEditor.serialize())
             } else {
 
-                this.httpClient.get<string>('http://localhost:52061/api/values/GetTemplate/' + selectedItemId)
+                this.documentEditorService.getTemplate(selectedItemId)
                 .subscribe(data => {
                     //console.log(data);
                     this.documentEditor.open(JSON.stringify(data));
