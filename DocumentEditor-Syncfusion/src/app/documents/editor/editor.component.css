@@ -1320,3 +1320,10 @@ body {
 .de-tbl-fill-clr .e-split-btn-wrapper:hover .e-split-btn {
     border-right-color: transparent;
 }
+
+/* Custom */
+
+.field-button
+{
+    text-transform: none !important; 
+}

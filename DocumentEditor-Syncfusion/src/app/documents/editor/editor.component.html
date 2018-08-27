@@ -1,864 +1,890 @@
 <div class="control-section">
-  <div class="col-lg-12 col-sm-12 col-md-12 center">
-      Click the button to view the sample
-  </div>
-  <div class="col-lg-12 col-sm-12 col-md-12 center">
-      <a class="e-btn" id="newTab" (click)="newTabClick()" target="_blank">Open in new tab</a>
-  </div>
-  <div id="wrapper">
-      <title>Essential JS 2 - DocumentEditor</title>
-      <div id="panel">
-          <div id='documenteditor_titlebar' style="display: none"></div>
-          <div id="documenteditor_toolbar" style="border: 1px solid rgb(228, 228, 228);">
-              <ejs-toolbar #de_toolbar id='documenteditor_toolbar' class="e-de-toolbar" (clicked)="onToolbarClick($event)" (created)="toolBarRendered()"
-                  style="padding: 6px; border: none; height: auto; width: calc(94%);">
-                  <e-items>
-                      <e-item prefixIcon='e-de-icon-New tb-icons e-de-icons' id="new" text="New" cssClass="e-de-toolbar-btn" tooltipText="Create a new document."></e-item>
-                      <e-item prefixIcon='e-de-icon-Open tb-icons e-de-icons' id="open" text="Open" cssClass="e-de-toolbar-btn" tooltipText="Open a document."></e-item>
-                      <e-item type='Separator' cssClass="e-de-seperator"></e-item>
-                      <e-item prefixIcon='e-de-icon-Undo tb-icons e-de-icons' id="undo" text="Undo" cssClass="e-de-toolbar-btn" tooltipText="Undo the last operation (Ctrl+Z)."></e-item>
-                      <e-item prefixIcon='e-de-icon-Redo tb-icons e-de-icons' id="redo" text="Redo" cssClass="e-de-toolbar-btn" tooltipText="Redo the last operation (Ctrl+Y)."></e-item>
-                      <e-item type='Separator' cssClass="e-de-seperator"></e-item>
-                      <e-item prefixIcon='e-de-icon-Picture tb-icons e-de-icons' id="image" text="Picture" cssClass="e-de-toolbar-btn" tooltipText="Insert inline picture from a file."></e-item>
-                      <e-item prefixIcon='e-de-icon-Table tb-icons e-de-icons' id="table" text="Table" cssClass="e-de-toolbar-btn" tooltipText="Insert a table into the document"></e-item>
-                      <e-item prefixIcon='e-de-icon-Link tb-icons e-de-icons' id="link" text="Link" cssClass="e-de-toolbar-btn" tooltipText="Create a link in your document for quick"></e-item>
-                      <e-item prefixIcon='e-de-icon-Bookmark tb-icons e-de-icons' id="bookmark" text="Bookmark" cssClass="e-de-toolbar-btn" tooltipText="Insert a bookmark in a specific place in this document."></e-item>
-                      <e-item prefixIcon='e-de-icon-TableOfContent tb-icons e-de-icons' id="toc" text="Table of Contents" cssClass="e-de-toolbar-btn"
-                          tooltipText="Provide an overview of your document by adding a table of contents."></e-item>
-                      <e-item type='Separator' cssClass="e-de-seperator"></e-item>
-                      <e-item prefixIcon='e-de-icon-Header tb-icons e-de-icons' id="header" text="Header" cssClass="e-de-toolbar-btn" tooltipText="Add or edit the header."></e-item>
-                      <e-item prefixIcon='e-de-icon-Footer tb-icons e-de-icons' id="footer" text="Footer" cssClass="e-de-toolbar-btn" tooltipText="Add or edit the footer."></e-item>
-                      <e-item prefixIcon='e-de-icon-PageSetup tb-icons e-de-icons' id="pagesetup" text="Page Setup" cssClass="e-de-toolbar-btn"
-                          tooltipText="Open the page setup dialog."></e-item>
-                      <e-item prefixIcon='e-de-icon-PageNumber tb-icons e-de-icons' id="pagenumber" text="Page Number" cssClass="e-de-toolbar-btn"
-                          tooltipText="Add page numbers."></e-item>
-                      <e-item type='Separator' cssClass="e-de-seperator"></e-item>
-                      <e-item prefixIcon='e-de-icon-Find tb-icons e-de-icons' id="find" text="Find" cssClass="e-de-toolbar-btn" tooltipText="Find text in the document (Ctrl+F)."></e-item>
-                      <e-item type='Separator' cssClass="e-de-seperator"></e-item>
-                      <e-item prefixIcon='e-de-icon-Paste tb-icons e-de-icons' id="useLocalClipboard" text="Local Clipboard" cssClass="e-de-toolbar-btn"
-                          tooltipText="Toggle between the internal clipboard and system clipboard.\r\n\n Access to system clipboard through script is denied due to browsers security policy. Instead, \r\n 1. You can enable internal clipboard to cut, copy and paste within the component.\r\n2. You can use the keyboard shortcuts (Ctrl+X, Ctrl+C and Ctrl+V) to cut, copy and paste with system clipboard."></e-item>
-                      <e-item prefixIcon='e-de-icon-Lock tb-icons e-de-icons' id="restrictEdit" text="Restrict Editing" cssClass="e-de-toolbar-btn"
-                          tooltipText="Restrict editing."></e-item>
-                    
-                          <e-item type='Separator' cssClass="e-de-seperator"></e-item>
-                          <e-item prefixIcon='e-de-icon-New tb-icons e-de-icons' id="newtemplate" text="New Template" cssClass="e-de-toolbar-btn" tooltipText="Create a new template."></e-item>
-                  </e-items>
-              </ejs-toolbar>
-          </div>
-          <div id="documenteditor_container_body" style="display: flex;position:relative;">
-              <ejs-documenteditor #documenteditor_default id="container" style="width: 100%;height: 100%;" [isReadOnly]=false [enableSelection]=true
-                  [enablePrint]=true [enableSfdtExport]=true [enableWordExport]=true [enableOptionsPane]=true [enableContextMenu]=true
-                  [enableHyperlinkDialog]=true [enableBookmarkDialog]=true [enableTableOfContentsDialog]=true [enableSearch]=true
-                  [enableParagraphDialog]=true [enableListDialog]=true [enableTablePropertiesDialog]=true [enableBordersAndShadingDialog]=true
-                  [enablePageSetupDialog]=true [enableStyleDialog]=true [enableFontDialog]=true [enableTableOptionsDialog]=true
-                  [enableTableDialog]=true [enableImageResizer]=true [enableEditor]=true [enableEditorHistory]=true (documentChange)="documentChange()"
-                  (selectionChange)="selectionChange()" (contentChange)="contentChange()" (requestNavigate)="requestNavigate($event)"
-                  (zoomFactorChange)="zoomFactorChange()" (viewChange)="viewChange($event)">
-              </ejs-documenteditor>
-              <div class="e-de-property-pane" style="width:272px;" [style.display]="propertiesPane.show?'block':'none'">
-                  <div id="text_properties_pane" [style.display]="textProperties.show?'block':'none'">
-                      <div style="padding:10px;border-bottom:0.5px solid #E0E0E0">
-                          <label class="e-de-prop-label">Text</label>
-                          <div style="display:inline-flex;">
-                              <div title="Font" style="margin-right: 9px">
-                                  <ejs-combobox #fontName [dataSource]='textProperties.fontStyle' [fields]='textProperties.fontfields' [query]='textProperties.fontquery'
-                                      [popupHeight]="150" [popupWidth]="162" [width]="162" [allowCustom]=true [showClearButton]=false
-                                      [(value)]="textProperties.fontName">
-                                      <ng-template #itemTemplate let-data>
-                                          <span [style.font-family]="data.FontName">{{data.FontName}}</span>
-                                      </ng-template>
-                                  </ejs-combobox>
-                              </div>
-                              <div title="Font Size">
-                                  <ejs-combobox #fontSize [dataSource]='textProperties.fontSizeSource' [popupHeight]="180" [popupWidth]="78" [width]="78" [allowCustom]=true
-                                      [showClearButton]=false cssClass="e-de-prop-dropdown" [(value)]="textProperties.fontSize"></ejs-combobox>
-                              </div>
-                          </div>
-                          <div style="display:inline-flex;margin-top:8px;height: 32px">
-                              <div class="e-de-prop-div-left e-btn-group">
-                                  <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Bold e-font-icons"
-                                      title="Bold (Ctrl+B)" [class.e-btn-toggle]='textProperties.isBold' (click)="textProperties.toggleBold()"></button>
-                                  <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Italic e-font-icons"
-                                      title="Italic (Ctrl+I)" [class.e-btn-toggle]='textProperties.isItalic' (click)="textProperties.toggleItalic()"></button>
-                                  <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Underline e-font-icons"
-                                      title="Underline (Ctrl+U)" [class.e-btn-toggle]='textProperties.isUnderline' (click)="textProperties.toggleUnderline()"></button>
-                                  <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-last-button" iconCss="e-btn-icon e-de-icon-Strikethrough e-font-icons"
-                                      title="Strikethrough" [class.e-btn-toggle]='textProperties.isStrikethrough' (click)="textProperties.toggleStrikethrough()">
-                                  </button>
-                              </div>
-                              <div class="e-de-prop-div-right e-btn-group" style="display:inline-flex;margin-left:8px">
-                                  <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-icons e-de-icon-Superscript"
-                                      [class.e-btn-toggle]='textProperties.isSuperscript' title="Superscript (Ctrl+Shift++)"
-                                      (click)="textProperties.toggleSuperscript()"></button>
-                                  <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-icons e-de-icon-Subscript"
-                                      [class.e-btn-toggle]='textProperties.isSubscript' title="Subscript (Ctrl+=)" (click)="textProperties.toggleSubscript()"></button>
-                              </div>
-                          </div>
-                          <div class="de-font-clr-picker e-de-prop-div-left" id="font_properties_color" style="display:inline-flex;margin-top:8px;height:32px">
-                              <input ejs-colorpicker id="font_color_btn" type="color" className="de-clr-pkr-hvr" width="40.5px" showButtons="true" value="#000000"
-                                  title="Font color" [(value)]="textProperties.fontColor" />
-                              <ejs-splitbutton #highlight_color id="highlightcolor" className="de-clr-pkr-hvr" iconCss="de-hglt-color" style="padding:0px 1px 1px 1px;height:32px;width:34.5px;"
-                                  target="#highlight_color_ppty" (click)="textProperties.hgltSplitObjClick()" (close)="textProperties.closePopup()"
-                                  (beforeOpen)="textProperties.openPopup()"></ejs-splitbutton>
-                              <div id="highlight_color_ppty" style="display: none;">
-                                  <div class="e-de-hglt-btn" id="yellowDiv" style="background-color: rgb(255, 255, 0);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="brightGreenDiv" style="background-color: rgb(0, 255, 0);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="turquoiseDiv" style="background-color: rgb(0, 255, 255);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="hotPinkDiv" style="background-color: rgb(255, 0, 255);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="blueDiv" style="background-color: rgb(0, 0, 255);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="redDiv" style="background-color: rgb(255, 0, 0);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="darkBlueDiv" style="background-color: rgb(0, 0, 128);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="tealDiv" style="background-color: rgb(0, 128, 128);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="greenDiv" style="background-color: rgb(0, 128, 0);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="violetDiv" style="background-color: rgb(128, 0, 128);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="darkRedDiv" style="background-color: rgb(128, 0, 0);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="darkYellowDiv" style="background-color: rgb(128, 128, 0);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="gray50Div" style="background-color: rgb(128, 128, 128);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="gray25Div" style="background-color: rgb(192, 192, 192);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-de-hglt-btn" id="blackDiv" style="background-color: rgb(0, 0, 0);" (click)="textProperties.onHighLightColor($event)"></div>
-                                  <div class="e-hglt-no-color">
-                                      <div id="noColorDiv" style="width:24px;height:24px;background-color:#ffffff;margin:3px;" class="e-color-selected" (click)="textProperties.onHighLightColor($event)">
-                                          <div class="de-hglt-no-color">No color</div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <button ejs-button cssClass="e-de-prop-font-last-button" iconCss="e-de-icon-ClearAll e-font-icons" title="Clear all formatting"
-                                  style="width: 40.5px;height: 32px;" (click)="documentEditor.editor.clearFormatting()"></button>
-                          </div>
-                      </div>
-                      <div>
-                          <div id="font_properties_paragraph" style="padding:10px;">
-                              <label class="e-de-prop-label" style="width:26px;">Paragraph</label>
-                              <div id="font_properties_styleDiv" style="margin-bottom: 8px;" title="Styles">
-                                  <ejs-dropdownlist #style_dropdown id="font_properties_style" style="width:248px;font-size: 12px;color: #000000;letter-spacing: 0.05px;"
-                                      [dataSource]="paragraphProperties.stylesData" cssClass="e-de-prop-dropdown" [fields]="paragraphProperties.stylefields"
-                                      [query]='paragraphProperties.stylequery' (open)="paragraphProperties.updateOptions($event)"
-                                      (change)="paragraphProperties.selectStyleValue($event)" (close)="paragraphProperties.closeStyleValue()">
-                                      <ng-template #itemTemplate let-data>
-                                          <span [ngStyle]="data.Style">{{data.StyleName}}</span>
-                                      </ng-template>
-                                      <ng-template #footerTemplate>
-                                          <span class="create-style-footer">Manage Styles</span>
-                                      </ng-template>
-                                  </ejs-dropdownlist>
-                              </div>
-                              <div id="font_properties_indentWholeDiv" style="display: flex;">
-                                  <div id="font_properties_indentDiv" style="width:164px;height:32px;display:flex;" class="e-de-prop-div-left e-btn-group">
-                                      <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignLeft e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Left')"
-                                          title="Align left (Ctrl+L)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="paragraphProperties.alignLeft"></button>
-                                      <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignCenter e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Center')"
-                                          title="Center (Ctrl+E)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="paragraphProperties.alignCenter"></button>
-                                      <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignRight e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Right')"
-                                          title="Align right (Ctrl+R)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="paragraphProperties.alignRight"></button>
-                                      <button ejs-button cssClass="e-de-prop-indent-last-button" iconCss="e-de-icon-Justify e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Justify')"
-                                          title="Justify (Ctrl+J)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="paragraphProperties.alignJustify"></button>
-                                  </div>
-                                  <div id="font_properties_indentDiv" style="width: 75px; height: 32px; display: flex; margin-left: 8px;" class="e-de-prop-div-left e-btn-group">
-                                      <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-DecreaseIndent e-font-icons" (click)="documentEditor.editor.decreaseIndent()"
-                                          title="Decrease indent" style="width: 37px;height:32px;"></button>
-                                      <button ejs-button cssClass="e-de-prop-indent-last-button" iconCss="e-de-icon-IncreaseIndent e-font-icons" (click)="documentEditor.editor.increaseIndent()"
-                                          title="Increase indent" style="width: 37px;height:32px;"></button>
-                                  </div>
-                              </div>
-                              <div id="font_properties_listDiv" style="margin-top:8px;display:flex;">
-                                  <button ejs-dropdownbutton [items]="paragraphProperties.lineHeight" iconCss="e-de-icon-LineSpacing" cssClass="e-de-prop-splitbutton"
-                                      (select)="paragraphProperties.lineSpacingAction($event)" title="Line spacing"></button>
-                                  <div id="font_properties_listDropDiv" class="de-split-button" style="padding-left: 10px;">
-                                      <ejs-splitbutton id="bullet_list_btn" iconCss="e-de-icon-Bullets" cssClass="e-de-prop-splitbutton" (close)="paragraphProperties.closeBullets()"
-                                          (beforeOpen)="paragraphProperties.openBullets()" target="#bullet_list" title="Bullets"
-                                          (click)="paragraphProperties.bulletSplitObjClick()"></ejs-splitbutton>
-                                      <div id="bullet_list" style="width: 198px; height: auto; display: none;">
-                                          <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="listMenu" style="display: block; outline: 0px;">
-                                              <li class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" (click)="paragraphProperties.noneClick()"
-                                                  style="display:block;">
-                                                  <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>
-                                                          <span class="e-de-icon-bullet-none"></span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li (click)="paragraphProperties.dotClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block;">
-                                                  <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>
-                                                          <span class="e-de-icon-bullet-dot"></span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li (click)="paragraphProperties.circleClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block;">
-                                                  <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>
-                                                          <span class="e-de-icon-bullet-circle"></span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li (click)="paragraphProperties.squareClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block;">
-                                                  <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>
-                                                          <span class="e-de-icon-bullet-square"></span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li (click)="paragraphProperties.flowerClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block;">
-                                                  <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>
-                                                          <span class="e-de-icon-bullet-flower"></span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li (click)="paragraphProperties.arrowClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block;">
-                                                  <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>
-                                                          <span class="e-de-icon-bullet-arrow"></span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li (click)="paragraphProperties.tickClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block;">
-                                                  <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>
-                                                          <span class="e-de-icon-bullet-tick"></span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                          </ul>
-                                      </div>
-                                      <ejs-splitbutton id="number_list_btn" iconCss="e-de-icon-Numbering" cssClass="e-de-prop-splitbutton" (beforeClose)="paragraphProperties.closeNumbering()"
-                                          (beforeOpen)="paragraphProperties.openNumbering()" target="#numbering_list" title="Numbering"
-                                          (click)="paragraphProperties.numberingSplitObjClick()"></ejs-splitbutton>
-                                      <div id="numbering_list" style="width: 213px; height: auto;">
-                                          <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="listMenu" style="display: block; outline: 0px;">
-                                              <li (click)="paragraphProperties.numberedNoneClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block">
-                                                  <div class="ui-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>
-                                                          <span class="ui-bullets">None</span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li (click)="paragraphProperties.numberedDotClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block">
-                                                  <div class="ui-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>1.
-                                                          <span class="ui-list-line"></span>
-                                                      </div>
-                                                      <div>2.
-                                                          <span class="ui-list-line"></span>
-                                                      </div>
-                                                      <div>3.
-                                                          <span class="ui-list-line"> </span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li (click)="paragraphProperties.numberedLowLetterClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block">
-                                                  <div class="ui-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>a.
-                                                          <span class="ui-list-line"></span>
-                                                      </div>
-                                                      <div>b.
-                                                          <span class="ui-list-line"></span>
-                                                      </div>
-                                                      <div>c.
-                                                          <span class="ui-list-line"> </span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li (click)="paragraphProperties.numberedUpLetterClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block">
-                                                  <div class="ui-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>A.
-                                                          <span class="ui-list-line"></span>
-                                                      </div>
-                                                      <div>B.
-                                                          <span class="ui-list-line"></span>
-                                                      </div>
-                                                      <div>C.
-                                                          <span class="ui-list-line"> </span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li (click)="paragraphProperties.numberedLowRomanClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block">
-                                                  <div class="ui-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>i.
-                                                          <span class="ui-list-line"></span>
-                                                      </div>
-                                                      <div>ii.
-                                                          <span class="ui-list-line"></span>
-                                                      </div>
-                                                      <div>iii.
-                                                          <span class="ui-list-line"> </span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li (click)="paragraphProperties.numberedUpRomanClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                  style="display:block">
-                                                  <div class="ui-list-header-presetmenu" id="ui-zlist0">
-                                                      <div>I.
-                                                          <span class="ui-list-line"></span>
-                                                      </div>
-                                                      <div>II.
-                                                          <span class="ui-list-line"></span>
-                                                      </div>
-                                                      <div>III.
-                                                          <span class="ui-list-line"> </span>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                          </ul>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div id="image_properties_pane" [style.display]="imageProperties.show?'block':'none'">
-                      <div id="container_imageProperties" style="width: 269px;">
-                          <div class="e-de-property-div-padding" id="container_imageDiv" style="border:0px">
-                              <label class="e-de-prop-label" style="padding:3px">Image</label>
-                              <div style="margin-left:2px;margin-top:10px">
-                                  <div id="container_widthDiv" style="position: relative;width: 100%;margin-right:6px; float:left;margin-bottom: 7px;padding-left: 35px;"
-                                      title="Width">
-                                      <ejs-numerictextbox #widthNumericBox id="container_widthInput" Type="text" :cssClass="className" [showSpinButton]="false"
-                                          [value]="468" [format]="imageProperties.numericFormat" [decimals]="imageProperties.numericDecimal"
-                                          [max]="imageProperties.numericMax" :min="imageProperties.numericMin"></ejs-numerictextbox>
-                                      <span style="position: absolute;left:8px;top:8px;color:#8C8C8C;">W</span>
-                                  </div>
-                                  <div id="container_heightDiv" style="position: relative;width: 100%;margin-right:6px; float:left;margin-bottom: 7px;padding-left: 35px;"
-                                      title="Height">
-                                      <ejs-numerictextbox #heightNumericBox id="container_heightInput" Type="text" :cssClass="className" [showSpinButton]="false"
-                                          [value]="468" [format]="imageProperties.numericFormat" [decimals]="imageProperties.numericDecimal"
-                                          [max]="imageProperties.numericMax" [min]="imageProperties.numericMin"></ejs-numerictextbox>
-                                      <span style="position: absolute;left:8px;top:8px;color:#8C8C8C;">H</span>
-                                  </div>
-                                  <ejs-checkbox id="container_aspectRatio" style="height:14px;margin-left:5px;float:left" [checked]="imageProperties.isMaintainAspectRatio"
-                                      (change)="imageProperties.onAspectRatioBtnClick()" label="Aspect ratio"></ejs-checkbox>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div id="headerfooter_properties_pane" [style.display]="headerFooterProperties.show?'block':'none'">
-                      <div id="_header_footer" style="padding:10px;">
-                          <label class="e-de-prop-header-label">Header &amp; Footer</label>
-                          <span class="e-de-icon-Close" (click)="headerFooterProperties.onClose()" id="_header_footer_close" style="display:inline-block;float:right;cursor:pointer"></span>
-                      </div>
-                      <div id="header_footer_properties_options" style="padding-left: 10px">
-                          <label class="e-de-prop-label" style="height:20px;">Options</label>
-                          <div id="header_footer_properties_optionsDiv">
-                              <div id="header_footer_properties_firstPageDiv" style="margin-bottom:3px;">
-                                  <ejs-checkbox #firstPage style="width:12px;height:12px" className="e-de-prop-sub-label" [checked]="headerFooterProperties.isFirstPage"
-                                      (change)="headerFooterProperties.changeFirstPageOptions()" label="Different First Page"
-                                      title="Different header and footer for first page."></ejs-checkbox>
-                              </div>
-                              <div id="header_footer_properties_oddOrEvenDiv">
-                                  <ejs-checkbox #oddOrEven style="width:12px;height:12px" className="e-de-prop-sub-label" [checked]="headerFooterProperties.isOddEvenPage"
-                                      (change)="headerFooterProperties.changeoddOrEvenOptions()" label="Different Odd &amp; Even Pages"></ejs-checkbox>
-                              </div>
-                          </div>
-                          <div class="e-de-prop-header-line" style="margin-top:7px;"></div>
-                      </div>
-                      <div id="header_footer_properties_positionLabelDiv" style="padding-top:10px;padding-left: 10px;">
-                          <label class="e-de-prop-label" style="height:20px;">Position</label>
-                          <div id="header_footer_properties_positionDiv">
-                              <div id="header_footer_properties_headerTopDiv" style="margin-right:8px;display:inline-flex;margin-bottom:8px;">
+    <div class="col-lg-12 col-sm-12 col-md-12 center">
+        Click the button to view the sample
+    </div>
+    <div class="col-lg-12 col-sm-12 col-md-12 center">
+        <a class="e-btn" id="newTab" (click)="newTabClick()" target="_blank">Open in new tab</a>
+    </div>
+    <div id="wrapper">
+        <title>Essential JS 2 - DocumentEditor</title>
+        <div id="panel">
+            <div id='documenteditor_titlebar' style="display: none"></div>
+            <div id="documenteditor_toolbar" style="border: 1px solid rgb(228, 228, 228);">
+                <ejs-toolbar #de_toolbar id='documenteditor_toolbar' class="e-de-toolbar" (clicked)="onToolbarClick($event)" (created)="toolBarRendered()"
+                    style="padding: 6px; border: none; height: auto; width: calc(94%);">
+                    <e-items>
+                        <e-item prefixIcon='e-de-icon-New tb-icons e-de-icons' id="new" text="New" cssClass="e-de-toolbar-btn" tooltipText="Create a new document."></e-item>
+                        <e-item prefixIcon='e-de-icon-Open tb-icons e-de-icons' id="open" text="Open" cssClass="e-de-toolbar-btn" tooltipText="Open a document."></e-item>
+                        <e-item type='Separator' cssClass="e-de-seperator"></e-item>
+                        <e-item prefixIcon='e-de-icon-Undo tb-icons e-de-icons' id="undo" text="Undo" cssClass="e-de-toolbar-btn" tooltipText="Undo the last operation (Ctrl+Z)."></e-item>
+                        <e-item prefixIcon='e-de-icon-Redo tb-icons e-de-icons' id="redo" text="Redo" cssClass="e-de-toolbar-btn" tooltipText="Redo the last operation (Ctrl+Y)."></e-item>
+                        <e-item type='Separator' cssClass="e-de-seperator"></e-item>
+                        <e-item prefixIcon='e-de-icon-Picture tb-icons e-de-icons' id="image" text="Picture" cssClass="e-de-toolbar-btn" tooltipText="Insert inline picture from a file."></e-item>
+                        <e-item prefixIcon='e-de-icon-Table tb-icons e-de-icons' id="table" text="Table" cssClass="e-de-toolbar-btn" tooltipText="Insert a table into the document"></e-item>
+                        <e-item prefixIcon='e-de-icon-Link tb-icons e-de-icons' id="link" text="Link" cssClass="e-de-toolbar-btn" tooltipText="Create a link in your document for quick"></e-item>
+                        <e-item prefixIcon='e-de-icon-Bookmark tb-icons e-de-icons' id="bookmark" text="Bookmark" cssClass="e-de-toolbar-btn" tooltipText="Insert a bookmark in a specific place in this document."></e-item>
+                        <e-item prefixIcon='e-de-icon-TableOfContent tb-icons e-de-icons' id="toc" text="Table of Contents" cssClass="e-de-toolbar-btn"
+                            tooltipText="Provide an overview of your document by adding a table of contents."></e-item>
+                        <e-item type='Separator' cssClass="e-de-seperator"></e-item>
+                        <e-item prefixIcon='e-de-icon-Header tb-icons e-de-icons' id="header" text="Header" cssClass="e-de-toolbar-btn" tooltipText="Add or edit the header."></e-item>
+                        <e-item prefixIcon='e-de-icon-Footer tb-icons e-de-icons' id="footer" text="Footer" cssClass="e-de-toolbar-btn" tooltipText="Add or edit the footer."></e-item>
+                        <e-item prefixIcon='e-de-icon-PageSetup tb-icons e-de-icons' id="pagesetup" text="Page Setup" cssClass="e-de-toolbar-btn"
+                            tooltipText="Open the page setup dialog."></e-item>
+                        <e-item prefixIcon='e-de-icon-PageNumber tb-icons e-de-icons' id="pagenumber" text="Page Number" cssClass="e-de-toolbar-btn"
+                            tooltipText="Add page numbers."></e-item>
+                        <e-item type='Separator' cssClass="e-de-seperator"></e-item>
+                        <e-item prefixIcon='e-de-icon-Find tb-icons e-de-icons' id="find" text="Find" cssClass="e-de-toolbar-btn" tooltipText="Find text in the document (Ctrl+F)."></e-item>
+                        <e-item type='Separator' cssClass="e-de-seperator"></e-item>
+                        <e-item prefixIcon='e-de-icon-Paste tb-icons e-de-icons' id="useLocalClipboard" text="Local Clipboard" cssClass="e-de-toolbar-btn"
+                            tooltipText="Toggle between the internal clipboard and system clipboard.\r\n\n Access to system clipboard through script is denied due to browsers security policy. Instead, \r\n 1. You can enable internal clipboard to cut, copy and paste within the component.\r\n2. You can use the keyboard shortcuts (Ctrl+X, Ctrl+C and Ctrl+V) to cut, copy and paste with system clipboard."></e-item>
+                        <e-item prefixIcon='e-de-icon-Lock tb-icons e-de-icons' id="restrictEdit" text="Restrict Editing" cssClass="e-de-toolbar-btn"
+                            tooltipText="Restrict editing."></e-item>
+
+                        <e-item type='Separator' cssClass="e-de-seperator"></e-item>
+                        <e-item prefixIcon='e-de-icon-New tb-icons e-de-icons' id="newtemplate" text="New Template" cssClass="e-de-toolbar-btn" tooltipText="Create a new template."></e-item>
+                        <e-item prefixIcon='e-de-icon-New tb-icons e-de-icons' id="field" text="Insert Field" cssClass="e-de-toolbar-btn" tooltipText="Insert Field"></e-item>
+                    </e-items>
+                </ejs-toolbar>
+            </div>
+            <div id="documenteditor_container_body" style="display: flex;position:relative;">
+                <ejs-documenteditor #documenteditor_default id="container" style="width: 100%;height: 100%;" [isReadOnly]=false [enableSelection]=true
+                    [enablePrint]=true [enableSfdtExport]=true [enableWordExport]=true [enableOptionsPane]=true [enableContextMenu]=true
+                    [enableHyperlinkDialog]=true [enableBookmarkDialog]=true [enableTableOfContentsDialog]=true [enableSearch]=true
+                    [enableParagraphDialog]=true [enableListDialog]=true [enableTablePropertiesDialog]=true [enableBordersAndShadingDialog]=true
+                    [enablePageSetupDialog]=true [enableStyleDialog]=true [enableFontDialog]=true [enableTableOptionsDialog]=true
+                    [enableTableDialog]=true [enableImageResizer]=true [enableEditor]=true [enableEditorHistory]=true (documentChange)="documentChange()"
+                    (selectionChange)="selectionChange()" (contentChange)="contentChange()" (requestNavigate)="requestNavigate($event)"
+                    (zoomFactorChange)="zoomFactorChange()" (viewChange)="viewChange($event)">
+                </ejs-documenteditor>
+                <div class="e-de-property-pane" style="width:272px;" [style.display]="propertiesPane.show?'block':'none'">
+                    <div id="text_properties_pane" [style.display]="textProperties.show?'block':'none'">
+                        <div style="padding:10px;border-bottom:0.5px solid #E0E0E0">
+                            <label class="e-de-prop-label">Text</label>
+                            <div style="display:inline-flex;">
+                                <div title="Font" style="margin-right: 9px">
+                                    <ejs-combobox #fontName [dataSource]='textProperties.fontStyle' [fields]='textProperties.fontfields' [query]='textProperties.fontquery'
+                                        [popupHeight]="150" [popupWidth]="162" [width]="162" [allowCustom]=true [showClearButton]=false
+                                        [(value)]="textProperties.fontName">
+                                        <ng-template #itemTemplate let-data>
+                                            <span [style.font-family]="data.FontName">{{data.FontName}}</span>
+                                        </ng-template>
+                                    </ejs-combobox>
+                                </div>
+                                <div title="Font Size">
+                                    <ejs-combobox #fontSize [dataSource]='textProperties.fontSizeSource' [popupHeight]="180" [popupWidth]="78" [width]="78" [allowCustom]=true
+                                        [showClearButton]=false cssClass="e-de-prop-dropdown" [(value)]="textProperties.fontSize"></ejs-combobox>
+                                </div>
+                            </div>
+                            <div style="display:inline-flex;margin-top:8px;height: 32px">
+                                <div class="e-de-prop-div-left e-btn-group">
+                                    <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Bold e-font-icons"
+                                        title="Bold (Ctrl+B)" [class.e-btn-toggle]='textProperties.isBold' (click)="textProperties.toggleBold()"></button>
+                                    <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Italic e-font-icons"
+                                        title="Italic (Ctrl+I)" [class.e-btn-toggle]='textProperties.isItalic' (click)="textProperties.toggleItalic()"></button>
+                                    <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Underline e-font-icons"
+                                        title="Underline (Ctrl+U)" [class.e-btn-toggle]='textProperties.isUnderline' (click)="textProperties.toggleUnderline()"></button>
+                                    <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-last-button" iconCss="e-btn-icon e-de-icon-Strikethrough e-font-icons"
+                                        title="Strikethrough" [class.e-btn-toggle]='textProperties.isStrikethrough' (click)="textProperties.toggleStrikethrough()">
+                                    </button>
+                                </div>
+                                <div class="e-de-prop-div-right e-btn-group" style="display:inline-flex;margin-left:8px">
+                                    <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-icons e-de-icon-Superscript"
+                                        [class.e-btn-toggle]='textProperties.isSuperscript' title="Superscript (Ctrl+Shift++)"
+                                        (click)="textProperties.toggleSuperscript()"></button>
+                                    <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-icons e-de-icon-Subscript"
+                                        [class.e-btn-toggle]='textProperties.isSubscript' title="Subscript (Ctrl+=)" (click)="textProperties.toggleSubscript()"></button>
+                                </div>
+                            </div>
+                            <div class="de-font-clr-picker e-de-prop-div-left" id="font_properties_color" style="display:inline-flex;margin-top:8px;height:32px">
+                                <input ejs-colorpicker id="font_color_btn" type="color" className="de-clr-pkr-hvr" width="40.5px" showButtons="true" value="#000000"
+                                    title="Font color" [(value)]="textProperties.fontColor" />
+                                <ejs-splitbutton #highlight_color id="highlightcolor" className="de-clr-pkr-hvr" iconCss="de-hglt-color" style="padding:0px 1px 1px 1px;height:32px;width:34.5px;"
+                                    target="#highlight_color_ppty" (click)="textProperties.hgltSplitObjClick()" (close)="textProperties.closePopup()"
+                                    (beforeOpen)="textProperties.openPopup()"></ejs-splitbutton>
+                                <div id="highlight_color_ppty" style="display: none;">
+                                    <div class="e-de-hglt-btn" id="yellowDiv" style="background-color: rgb(255, 255, 0);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="brightGreenDiv" style="background-color: rgb(0, 255, 0);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="turquoiseDiv" style="background-color: rgb(0, 255, 255);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="hotPinkDiv" style="background-color: rgb(255, 0, 255);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="blueDiv" style="background-color: rgb(0, 0, 255);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="redDiv" style="background-color: rgb(255, 0, 0);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="darkBlueDiv" style="background-color: rgb(0, 0, 128);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="tealDiv" style="background-color: rgb(0, 128, 128);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="greenDiv" style="background-color: rgb(0, 128, 0);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="violetDiv" style="background-color: rgb(128, 0, 128);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="darkRedDiv" style="background-color: rgb(128, 0, 0);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="darkYellowDiv" style="background-color: rgb(128, 128, 0);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="gray50Div" style="background-color: rgb(128, 128, 128);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="gray25Div" style="background-color: rgb(192, 192, 192);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-de-hglt-btn" id="blackDiv" style="background-color: rgb(0, 0, 0);" (click)="textProperties.onHighLightColor($event)"></div>
+                                    <div class="e-hglt-no-color">
+                                        <div id="noColorDiv" style="width:24px;height:24px;background-color:#ffffff;margin:3px;" class="e-color-selected" (click)="textProperties.onHighLightColor($event)">
+                                            <div class="de-hglt-no-color">No color</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button ejs-button cssClass="e-de-prop-font-last-button" iconCss="e-de-icon-ClearAll e-font-icons" title="Clear all formatting"
+                                    style="width: 40.5px;height: 32px;" (click)="documentEditor.editor.clearFormatting()"></button>
+                            </div>
+                        </div>
+                        <div>
+                            <div id="font_properties_paragraph" style="padding:10px;">
+                                <label class="e-de-prop-label" style="width:26px;">Paragraph</label>
+                                <div id="font_properties_styleDiv" style="margin-bottom: 8px;" title="Styles">
+                                    <ejs-dropdownlist #style_dropdown id="font_properties_style" style="width:248px;font-size: 12px;color: #000000;letter-spacing: 0.05px;"
+                                        [dataSource]="paragraphProperties.stylesData" cssClass="e-de-prop-dropdown" [fields]="paragraphProperties.stylefields"
+                                        [query]='paragraphProperties.stylequery' (open)="paragraphProperties.updateOptions($event)"
+                                        (change)="paragraphProperties.selectStyleValue($event)" (close)="paragraphProperties.closeStyleValue()">
+                                        <ng-template #itemTemplate let-data>
+                                            <span [ngStyle]="data.Style">{{data.StyleName}}</span>
+                                        </ng-template>
+                                        <ng-template #footerTemplate>
+                                            <span class="create-style-footer">Manage Styles</span>
+                                        </ng-template>
+                                    </ejs-dropdownlist>
+                                </div>
+                                <div id="font_properties_indentWholeDiv" style="display: flex;">
+                                    <div id="font_properties_indentDiv" style="width:164px;height:32px;display:flex;" class="e-de-prop-div-left e-btn-group">
+                                        <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignLeft e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Left')"
+                                            title="Align left (Ctrl+L)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="paragraphProperties.alignLeft"></button>
+                                        <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignCenter e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Center')"
+                                            title="Center (Ctrl+E)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="paragraphProperties.alignCenter"></button>
+                                        <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignRight e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Right')"
+                                            title="Align right (Ctrl+R)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="paragraphProperties.alignRight"></button>
+                                        <button ejs-button cssClass="e-de-prop-indent-last-button" iconCss="e-de-icon-Justify e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Justify')"
+                                            title="Justify (Ctrl+J)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="paragraphProperties.alignJustify"></button>
+                                    </div>
+                                    <div id="font_properties_indentDiv" style="width: 75px; height: 32px; display: flex; margin-left: 8px;" class="e-de-prop-div-left e-btn-group">
+                                        <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-DecreaseIndent e-font-icons" (click)="documentEditor.editor.decreaseIndent()"
+                                            title="Decrease indent" style="width: 37px;height:32px;"></button>
+                                        <button ejs-button cssClass="e-de-prop-indent-last-button" iconCss="e-de-icon-IncreaseIndent e-font-icons" (click)="documentEditor.editor.increaseIndent()"
+                                            title="Increase indent" style="width: 37px;height:32px;"></button>
+                                    </div>
+                                </div>
+                                <div id="font_properties_listDiv" style="margin-top:8px;display:flex;">
+                                    <button ejs-dropdownbutton [items]="paragraphProperties.lineHeight" iconCss="e-de-icon-LineSpacing" cssClass="e-de-prop-splitbutton"
+                                        (select)="paragraphProperties.lineSpacingAction($event)" title="Line spacing"></button>
+                                    <div id="font_properties_listDropDiv" class="de-split-button" style="padding-left: 10px;">
+                                        <ejs-splitbutton id="bullet_list_btn" iconCss="e-de-icon-Bullets" cssClass="e-de-prop-splitbutton" (close)="paragraphProperties.closeBullets()"
+                                            (beforeOpen)="paragraphProperties.openBullets()" target="#bullet_list" title="Bullets"
+                                            (click)="paragraphProperties.bulletSplitObjClick()"></ejs-splitbutton>
+                                        <div id="bullet_list" style="width: 198px; height: auto; display: none;">
+                                            <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="listMenu" style="display: block; outline: 0px;">
+                                                <li class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" (click)="paragraphProperties.noneClick()"
+                                                    style="display:block;">
+                                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>
+                                                            <span class="e-de-icon-bullet-none"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li (click)="paragraphProperties.dotClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block;">
+                                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>
+                                                            <span class="e-de-icon-bullet-dot"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li (click)="paragraphProperties.circleClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block;">
+                                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>
+                                                            <span class="e-de-icon-bullet-circle"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li (click)="paragraphProperties.squareClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block;">
+                                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>
+                                                            <span class="e-de-icon-bullet-square"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li (click)="paragraphProperties.flowerClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block;">
+                                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>
+                                                            <span class="e-de-icon-bullet-flower"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li (click)="paragraphProperties.arrowClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block;">
+                                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>
+                                                            <span class="e-de-icon-bullet-arrow"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li (click)="paragraphProperties.tickClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block;">
+                                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>
+                                                            <span class="e-de-icon-bullet-tick"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <ejs-splitbutton id="number_list_btn" iconCss="e-de-icon-Numbering" cssClass="e-de-prop-splitbutton" (beforeClose)="paragraphProperties.closeNumbering()"
+                                            (beforeOpen)="paragraphProperties.openNumbering()" target="#numbering_list" title="Numbering"
+                                            (click)="paragraphProperties.numberingSplitObjClick()"></ejs-splitbutton>
+                                        <div id="numbering_list" style="width: 213px; height: auto;">
+                                            <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="listMenu" style="display: block; outline: 0px;">
+                                                <li (click)="paragraphProperties.numberedNoneClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block">
+                                                    <div class="ui-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>
+                                                            <span class="ui-bullets">None</span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li (click)="paragraphProperties.numberedDotClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block">
+                                                    <div class="ui-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>1.
+                                                            <span class="ui-list-line"></span>
+                                                        </div>
+                                                        <div>2.
+                                                            <span class="ui-list-line"></span>
+                                                        </div>
+                                                        <div>3.
+                                                            <span class="ui-list-line"> </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li (click)="paragraphProperties.numberedLowLetterClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block">
+                                                    <div class="ui-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>a.
+                                                            <span class="ui-list-line"></span>
+                                                        </div>
+                                                        <div>b.
+                                                            <span class="ui-list-line"></span>
+                                                        </div>
+                                                        <div>c.
+                                                            <span class="ui-list-line"> </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li (click)="paragraphProperties.numberedUpLetterClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block">
+                                                    <div class="ui-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>A.
+                                                            <span class="ui-list-line"></span>
+                                                        </div>
+                                                        <div>B.
+                                                            <span class="ui-list-line"></span>
+                                                        </div>
+                                                        <div>C.
+                                                            <span class="ui-list-line"> </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li (click)="paragraphProperties.numberedLowRomanClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block">
+                                                    <div class="ui-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>i.
+                                                            <span class="ui-list-line"></span>
+                                                        </div>
+                                                        <div>ii.
+                                                            <span class="ui-list-line"></span>
+                                                        </div>
+                                                        <div>iii.
+                                                            <span class="ui-list-line"> </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li (click)="paragraphProperties.numberedUpRomanClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                    style="display:block">
+                                                    <div class="ui-list-header-presetmenu" id="ui-zlist0">
+                                                        <div>I.
+                                                            <span class="ui-list-line"></span>
+                                                        </div>
+                                                        <div>II.
+                                                            <span class="ui-list-line"></span>
+                                                        </div>
+                                                        <div>III.
+                                                            <span class="ui-list-line"> </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="image_properties_pane" [style.display]="imageProperties.show?'block':'none'">
+                        <div id="container_imageProperties" style="width: 269px;">
+                            <div class="e-de-property-div-padding" id="container_imageDiv" style="border:0px">
+                                <label class="e-de-prop-label" style="padding:3px">Image</label>
+                                <div style="margin-left:2px;margin-top:10px">
+                                    <div id="container_widthDiv" style="position: relative;width: 100%;margin-right:6px; float:left;margin-bottom: 7px;padding-left: 35px;"
+                                        title="Width">
+                                        <ejs-numerictextbox #widthNumericBox id="container_widthInput" Type="text" :cssClass="className" [showSpinButton]="false"
+                                            [value]="468" [format]="imageProperties.numericFormat" [decimals]="imageProperties.numericDecimal"
+                                            [max]="imageProperties.numericMax" :min="imageProperties.numericMin"></ejs-numerictextbox>
+                                        <span style="position: absolute;left:8px;top:8px;color:#8C8C8C;">W</span>
+                                    </div>
+                                    <div id="container_heightDiv" style="position: relative;width: 100%;margin-right:6px; float:left;margin-bottom: 7px;padding-left: 35px;"
+                                        title="Height">
+                                        <ejs-numerictextbox #heightNumericBox id="container_heightInput" Type="text" :cssClass="className" [showSpinButton]="false"
+                                            [value]="468" [format]="imageProperties.numericFormat" [decimals]="imageProperties.numericDecimal"
+                                            [max]="imageProperties.numericMax" [min]="imageProperties.numericMin"></ejs-numerictextbox>
+                                        <span style="position: absolute;left:8px;top:8px;color:#8C8C8C;">H</span>
+                                    </div>
+                                    <ejs-checkbox id="container_aspectRatio" style="height:14px;margin-left:5px;float:left" [checked]="imageProperties.isMaintainAspectRatio"
+                                        (change)="imageProperties.onAspectRatioBtnClick()" label="Aspect ratio"></ejs-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="insertField_properties_pane" [style.display]="insertFieldProperties.show?'block':'none'">
+                            <div id="_header_footer" style="padding:10px;">
+                                    <label class="e-de-prop-header-label">Insert Field</label>
+                                    <span class="e-de-icon-Close" (click)="insertFieldProperties.onClose()" id="_header_footer_close" style="display:inline-block;float:right;cursor:pointer"></span>
+                                </div>
+                                <div style="padding-left: 10px">
+                                    <label class="e-de-prop-label" style="height:20px;">Patient</label>
+                                    <div id="header_footer_properties_optionsDiv">
+                                        <button ejs-button id="container_tableOutlineBorder" #outline_border style="height:34px" title="Outside borders" cssClass="e-de-prop-font-button field-button"
+                                            (click)="insertFieldProperties.onInsertField('{@@name}')">Patient's Name</button><br/><br/>
+                                        <button ejs-button id="container_tableOutlineBorder" #outline_border style="height:34px" title="Outside borders" cssClass="e-de-prop-font-button field-button"
+                                            (click)="insertFieldProperties.onInsertField('{@@last-appintment}')">Last Appointment
+                                            Data
+                                        </button>
+                                    </div>
+                                    <br/>
+                                    <div class="e-de-prop-header-line" style="margin-top:7px;"></div>
+                                    <label class="e-de-prop-label" style="height:20px;">General</label>
+                                    <div id="header_footer_properties_optionsDiv">
+                                        <button ejs-button id="container_tableOutlineBorder" #outline_border style="height:34px" title="Outside borders" cssClass="e-de-prop-font-button field-button"
+                                            (click)="insertFieldProperties.onInsertField('{@@date}')">Date</button>
+                                    </div>
+                                </div>
+
+
+
+                    </div>
+                    <div id="headerfooter_properties_pane" [style.display]="headerFooterProperties.show?'block':'none'">
+                        <div id="_header_footer" style="padding:10px;">
+                            <label class="e-de-prop-header-label">Header &amp; Footer</label>
+                            <span class="e-de-icon-Close" (click)="headerFooterProperties.onClose()" id="_header_footer_close" style="display:inline-block;float:right;cursor:pointer"></span>
+                        </div>
+                        <div id="header_footer_properties_options" style="padding-left: 10px">
+                            <label class="e-de-prop-label" style="height:20px;">Options</label>
+                            <div id="header_footer_properties_optionsDiv">
+                                <div id="header_footer_properties_firstPageDiv" style="margin-bottom:3px;">
+                                    <ejs-checkbox #firstPage style="width:12px;height:12px" className="e-de-prop-sub-label" [checked]="headerFooterProperties.isFirstPage"
+                                        (change)="headerFooterProperties.changeFirstPageOptions()" label="Different First Page"
+                                        title="Different header and footer for first page."></ejs-checkbox>
+                                </div>
+                                <div id="header_footer_properties_oddOrEvenDiv">
+                                    <ejs-checkbox #oddOrEven style="width:12px;height:12px" className="e-de-prop-sub-label" [checked]="headerFooterProperties.isOddEvenPage"
+                                        (change)="headerFooterProperties.changeoddOrEvenOptions()" label="Different Odd &amp; Even Pages"></ejs-checkbox>
+                                </div>
+                            </div>
+                            <div class="e-de-prop-header-line" style="margin-top:7px;"></div>
+                        </div>
+                        <div id="header_footer_properties_positionLabelDiv" style="padding-top:10px;padding-left: 10px;">
+                            <label class="e-de-prop-label" style="height:20px;">Position</label>
+                            <div id="header_footer_properties_positionDiv">
+                                <div id="header_footer_properties_headerTopDiv" style="margin-right:8px;display:inline-flex;margin-bottom:8px;">
                                   <label class="e-de-prop-sub-label" style="width: 128px;margin-top: 10px;">Header from Top</label>
-                                  <ejs-numerictextbox #headerFromTop id="headerFromTop" title="Distance from top of the page to top of the header." Type="text"
-                                      [showSpinButton]="false" [value]="headerFooterProperties.headerFromTop" [format]="headerFooterProperties.numericFormat"
-                                      [decimals]="headerFooterProperties.numericDecimal" [max]="headerFooterProperties.numericMax"
-                                      [min]="headerFooterProperties.numericMin" style="width: 85px;"></ejs-numerictextbox>
-                              </div>
-                              <div id="header_footer_properties_footerBottomDiv" style="margin-right:8px;display:inline-flex;">
-                                  <label class="e-de-prop-sub-label" style="width:128px;margin-top: 10px;">Footer from Bottom</label>
-                                  <ejs-numerictextbox #footerFromTop id="footerFromTop" title="Distance from bottom of the page to bottom of the footer." Type="text"
-                                      [showSpinButton]="false" [value]="headerFooterProperties.footerFromTop" [format]="headerFooterProperties.numericFormat"
-                                      [decimals]="headerFooterProperties.numericDecimal" [max]="headerFooterProperties.numericMax"
-                                      [min]="headerFooterProperties.numericMin" style="width: 85px;"></ejs-numerictextbox>
-                              </div>
-                          </div>
-                          <div class="e-de-prop-header-line" style="margin-top:10px;"></div>
-                      </div>
-                  </div>
-                  <div id="table_properties_pane" [style.display]="tableProperties.show?'block':'none'">
-                      <div id="table_properties" style="display: none">
-                          <div>
-                              <div class="e-de-property-div-padding de-tbl-fill-clr" id="container_fillColorDiv">
-                                  <label class="e-de-prop-sub-label" style="margin-left:6px;margin-right:8px">Fill</label>
-                                  <input ejs-colorpicker id="container_tableShading" showButtons="false" cssClass="e-de-prop-font-button e-de-prop-font-colorpicker"
-                                      [(value)]="tableProperties.fillColor" (change)="tableProperties.changeBackgroundColor($event)"
-                                  />
-                              </div>
-                              <div class="e-de-property-div-padding">
-                                  <label class="e-de-prop-label">Border Style</label>
-                                  <div id="container_borderStyleDiv" style="display:inline-flex;margin-right:9px;margin-bottom:3px">
-                                      <div style="width:120px;height:100px">
-                                          <div class="e-btn-group">
-                                              <button ejs-button id="container_tableOutlineBorder" #outline_border style="width:40px;height:34px" title="Outside borders"
-                                                  iconCss="e-de-icon-OutsideBorder e-de-tableprop-icons" cssClass="e-de-prop-font-button"
-                                                  (click)="tableProperties.onOutlineBorder()"></button>
-                                              <button ejs-button id="container_tableAllBorder" #tableAll_border style="width:40px;height:34px" title="All borders" iconCss="e-de-icon-AllBorders e-de-tableprop-icons"
-                                                  cssClass="e-de-prop-font-button" (click)="tableProperties.onAllBorder()"></button>
-                                              <button ejs-button id="container_tableCenterBorder" #tableCenter_border style="width:40px;height:34px" title="Inside borders"
-                                                  iconCss="e-de-icon-InsideBorders e-de-tableprop-icons" cssClass="e-de-prop-font-button"
-                                                  (click)="tableProperties.onInsideBorder()"></button>
-                                          </div>
-                                          <div class="e-btn-group">
-                                              <button ejs-button id="container_tableLeftBorder" #tableLeft_border style="width:40px;height:34px" title="Left border" iconCss="e-de-icon-LeftBorders e-de-tableprop-icons"
-                                                  cssClass="e-de-prop-font-button" (click)="tableProperties.onLeftBorder()"></button>
-                                              <button ejs-button id="container_tableCenterVBorder" #tableCenterV_border style="width:40px;height:34px" title="Inside bertical border"
-                                                  iconCss="e-de-icon-InsideVerticalBorder e-de-tableprop-icons" cssClass="e-de-prop-font-button"
-                                                  (click)="tableProperties.onVerticalBorder()"></button>
-                                              <button ejs-button id="container_tableRightBorder" style="width:40px;height:34px" #tableRight_border title="Right border"
-                                                  iconCss="e-de-icon-RightBorder e-de-tableprop-icons" cssClass="e-de-prop-font-button"
-                                                  (click)="tableProperties.onRightBorder()"></button>
-                                          </div>
-                                          <div class="e-btn-group">
-                                              <button ejs-button id="container_tableTopBorder" #tableTop_border style="width:40px;height:34px" title="Top border" iconCss="e-de-icon-TopBorder e-de-tableprop-icons"
-                                                  cssClass="e-de-prop-font-button" (click)="tableProperties.onTopBorder()"></button>
-                                              <button ejs-button id="container_tableCenterHBorder" #tableCenterH_border style="width:40px;height:34px" title="Inside horizontal border"
-                                                  iconCss="e-de-icon-InsideHorizondalBorder e-de-tableprop-icons" cssClass="e-de-prop-font-button"
-                                                  (click)="tableProperties.onHorizontalBorder()"></button>
-                                              <button ejs-button id="container_tableBottomBorder" #tableBottom_border style="width:40px;height:34px" title="Bottom border"
-                                                  iconCss="e-de-icon-BottomBorder e-de-tableprop-icons" cssClass="e-de-prop-font-button"
-                                                  (click)="tableProperties.onBottomBorder()"></button>
-                                          </div>
-                                      </div>
-                                      <div style="width:120px;height:100px;padding-left:12px;" class="de-tbl-fill-clr">
-                                          <input ejs-colorpicker id="container_tableBorderColor" [(value)]="tableProperties.borderColor" showButtons="false" cssClass="e-de-prop-font-button e-de-prop-font-colorpicker"
-                                              change="tableProperties.changeBorderSize($event)" />
-                                          <button ejs-dropdownbutton id="container_tableBorderSize" #borderSize style="width:120px;height:28px;margin-top:8px" cssClass="e-de-prop-bordersize"
-                                              iconCss="e-de-icon-StrokeSize" [content]="tableProperties.borderSizeContent"
-                                              target="#borderSizeTarget" (beforeOpen)="tableProperties.openBorderSizePopup()"
-                                              (beforeClose)="tableProperties.closeBorderSizePopup()"></button>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="e-de-property-div-padding">
-                                  <label class="e-de-prop-label">Cell</label>
-                                  <div>
-                                      <button ejs-button id="container_mergeCell" style="width:38px;height:32px" title="Merge cells" iconCss="e-de-icon-Cell e-de-tableprop-icons"
-                                          cssClass="e-de-prop-font-button" (click)="tableProperties.onMergeCell()" [disabled]="!tableProperties.canMerge"></button>
-                                  </div>
-                              </div>
-                              <div class="e-de-property-div-padding">
-                                  <label class="e-de-prop-label">Insert / Delete</label>
-                                  <div style="display:inline-flex">
-                                      <div class="e-btn-group">
-                                          <button ejs-button id="container_insertColumnLeft" style="width:38px;height:32px" title="Insert columns to the left" iconCss="e-de-icon-InsertLeft e-de-tableprop-icons"
-                                              cssClass="e-de-prop-font-button" (click)="tableProperties.onInsertColumnLeft()"></button>
-                                          <button ejs-button id="container_insertColumnRight" style="width:38px;height:32px" title="Insert columns to the right" iconCss="e-de-icon-InsertRight e-de-tableprop-icons"
-                                              cssClass="e-de-prop-font-button" (click)="tableProperties.onInsertColumnRight()"></button>
-                                          <button ejs-button id="container_insertRowAbove" style="width:38px;height:32px" title="Insert rows above" iconCss="e-de-icon-InsertAbove e-de-tableprop-icons"
-                                              cssClass="e-de-prop-font-button" (click)="tableProperties.onInsertRowAbove()"></button>
-                                          <button ejs-button id="container_insertRowBelow" style="width:38px;height:32px" title="Insert rows below" iconCss="e-de-icon-InsertBelow e-de-tableprop-icons"
-                                              cssClass="e-de-prop-font-button" (click)="tableProperties.onInsertRowBelow()">
-                                          </button>
-                                      </div>
-                                      <div class="e-btn-group">
-                                          <button ejs-button id="container_deleteRow" style="width:38px;height:32px;margin-left:9px" title="Delete rows" iconCss="e-de-icon-DeleteRows e-de-tableprop-icons"
-                                              cssClass="e-de-prop-font-button" (click)="tableProperties.onDeleteRow()"></button>
-                                          <button ejs-button id="container_deleteColumn" (click)="tableProperties.onDeleteColumn()" style="width:38px;height:32px;"
-                                              title="Delete columns" iconCss="e-de-icon-DeleteColumns e-de-tableprop-icons"
-                                              cssClass="e-de-prop-font-button"></button>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="e-de-property-div-padding e-de-cellmargin-text">
-                                  <label class="e-de-prop-label">Cell Margin</label>
-                                  <div style="height: 60px;display:inline-flex">
-                                      <div style="width:50px;float:left;margin-right:9px">
-                                          <label class="e-de-prop-sub-label">Top</label>
-                                          <ejs-numerictextbox id="container_topMargin" #topMargin style="width:50px" Type="text" title="Top margin" [showSpinButton]="false"
-                                              [value]="tableProperties.topMargin" [format]="tableProperties.decimalFormat"
-                                              [decimals]="tableProperties.decimalNumber" [max]="500" [min]="0" (click)="tableProperties.onApplyTopMargin()"></ejs-numerictextbox>
-                                      </div>
-                                      <div style="width:50px;float:left;margin-right:9px">
-                                          <label class="e-de-prop-sub-label">Bottom</label>
-                                          <ejs-numerictextbox id="container_bottomMargin" #bottomMargin style="width:50px" Type="text" title="Bottom margin" [showSpinButton]="false"
-                                              [value]="tableProperties.bottomMargin" [format]="tableProperties.decimalFormat"
-                                              [decimals]="tableProperties.decimalNumber" [max]="500" [min]="0" (click)="tableProperties.onApplyBottomMargin()"></ejs-numerictextbox>
-                                      </div>
-                                      <div style="width:50px;float:left;margin-right:9px">
-                                          <label class="e-de-prop-sub-label">Left</label>
-                                          <ejs-numerictextbox id="container_leftMargin" #leftMargin style="width:50px" Type="text" title="Left margin " [showSpinButton]="false "
-                                              [value]="tableProperties.leftMargin" [format]="tableProperties.decimalFormat "
-                                              [decimals]="tableProperties.decimalNumber " [max]="500" [min]="0" (click)="tableProperties.onApplyLeftMargin() "></ejs-numerictextbox>
-                                      </div>
-                                      <div style="width:50px;float:left;margin-right:9px ">
-                                          <label class="e-de-prop-sub-label ">Right</label>
-                                          <ejs-numerictextbox id="container_rightMargin" #rightMargin style="width:50px " Type="text
+                                    <ejs-numerictextbox #headerFromTop id="headerFromTop" title="Distance from top of the page to top of the header." Type="text"
+                                        [showSpinButton]="false" [value]="headerFooterProperties.headerFromTop" [format]="headerFooterProperties.numericFormat"
+                                        [decimals]="headerFooterProperties.numericDecimal" [max]="headerFooterProperties.numericMax"
+                                        [min]="headerFooterProperties.numericMin" style="width: 85px;"></ejs-numerictextbox>
+                                </div>
+                                <div id="header_footer_properties_footerBottomDiv" style="margin-right:8px;display:inline-flex;">
+                                    <label class="e-de-prop-sub-label" style="width:128px;margin-top: 10px;">Footer from Bottom</label>
+                                    <ejs-numerictextbox #footerFromTop id="footerFromTop" title="Distance from bottom of the page to bottom of the footer." Type="text"
+                                        [showSpinButton]="false" [value]="headerFooterProperties.footerFromTop" [format]="headerFooterProperties.numericFormat"
+                                        [decimals]="headerFooterProperties.numericDecimal" [max]="headerFooterProperties.numericMax"
+                                        [min]="headerFooterProperties.numericMin" style="width: 85px;"></ejs-numerictextbox>
+                                </div>
+                            </div>
+                            <div class="e-de-prop-header-line" style="margin-top:10px;"></div>
+                        </div>
+                    </div>
+                    <div id="table_properties_pane" [style.display]="tableProperties.show?'block':'none'">
+                        <div id="table_properties" style="display: none">
+                            <div>
+                                <div class="e-de-property-div-padding de-tbl-fill-clr" id="container_fillColorDiv">
+                                    <label class="e-de-prop-sub-label" style="margin-left:6px;margin-right:8px">Fill</label>
+                                    <input ejs-colorpicker id="container_tableShading" showButtons="false" cssClass="e-de-prop-font-button e-de-prop-font-colorpicker"
+                                        [(value)]="tableProperties.fillColor" (change)="tableProperties.changeBackgroundColor($event)"
+                                    />
+                                </div>
+                                <div class="e-de-property-div-padding">
+                                    <label class="e-de-prop-label">Border Style</label>
+                                    <div id="container_borderStyleDiv" style="display:inline-flex;margin-right:9px;margin-bottom:3px">
+                                        <div style="width:120px;height:100px">
+                                            <div class="e-btn-group">
+                                                <button ejs-button id="container_tableOutlineBorder" #outline_border style="width:40px;height:34px" title="Outside borders"
+                                                    iconCss="e-de-icon-OutsideBorder e-de-tableprop-icons" cssClass="e-de-prop-font-button"
+                                                    (click)="tableProperties.onOutlineBorder()"></button>
+                                                <button ejs-button id="container_tableAllBorder" #tableAll_border style="width:40px;height:34px" title="All borders" iconCss="e-de-icon-AllBorders e-de-tableprop-icons"
+                                                    cssClass="e-de-prop-font-button" (click)="tableProperties.onAllBorder()"></button>
+                                                <button ejs-button id="container_tableCenterBorder" #tableCenter_border style="width:40px;height:34px" title="Inside borders"
+                                                    iconCss="e-de-icon-InsideBorders e-de-tableprop-icons" cssClass="e-de-prop-font-button"
+                                                    (click)="tableProperties.onInsideBorder()"></button>
+                                            </div>
+                                            <div class="e-btn-group">
+                                                <button ejs-button id="container_tableLeftBorder" #tableLeft_border style="width:40px;height:34px" title="Left border" iconCss="e-de-icon-LeftBorders e-de-tableprop-icons"
+                                                    cssClass="e-de-prop-font-button" (click)="tableProperties.onLeftBorder()"></button>
+                                                <button ejs-button id="container_tableCenterVBorder" #tableCenterV_border style="width:40px;height:34px" title="Inside bertical border"
+                                                    iconCss="e-de-icon-InsideVerticalBorder e-de-tableprop-icons" cssClass="e-de-prop-font-button"
+                                                    (click)="tableProperties.onVerticalBorder()"></button>
+                                                <button ejs-button id="container_tableRightBorder" style="width:40px;height:34px" #tableRight_border title="Right border"
+                                                    iconCss="e-de-icon-RightBorder e-de-tableprop-icons" cssClass="e-de-prop-font-button"
+                                                    (click)="tableProperties.onRightBorder()"></button>
+                                            </div>
+                                            <div class="e-btn-group">
+                                                <button ejs-button id="container_tableTopBorder" #tableTop_border style="width:40px;height:34px" title="Top border" iconCss="e-de-icon-TopBorder e-de-tableprop-icons"
+                                                    cssClass="e-de-prop-font-button" (click)="tableProperties.onTopBorder()"></button>
+                                                <button ejs-button id="container_tableCenterHBorder" #tableCenterH_border style="width:40px;height:34px" title="Inside horizontal border"
+                                                    iconCss="e-de-icon-InsideHorizondalBorder e-de-tableprop-icons" cssClass="e-de-prop-font-button"
+                                                    (click)="tableProperties.onHorizontalBorder()"></button>
+                                                <button ejs-button id="container_tableBottomBorder" #tableBottom_border style="width:40px;height:34px" title="Bottom border"
+                                                    iconCss="e-de-icon-BottomBorder e-de-tableprop-icons" cssClass="e-de-prop-font-button"
+                                                    (click)="tableProperties.onBottomBorder()"></button>
+                                            </div>
+                                        </div>
+                                        <div style="width:120px;height:100px;padding-left:12px;" class="de-tbl-fill-clr">
+                                            <input ejs-colorpicker id="container_tableBorderColor" [(value)]="tableProperties.borderColor" showButtons="false" cssClass="e-de-prop-font-button e-de-prop-font-colorpicker"
+                                                change="tableProperties.changeBorderSize($event)" />
+                                            <button ejs-dropdownbutton id="container_tableBorderSize" #borderSize style="width:120px;height:28px;margin-top:8px" cssClass="e-de-prop-bordersize"
+                                                iconCss="e-de-icon-StrokeSize" [content]="tableProperties.borderSizeContent"
+                                                target="#borderSizeTarget" (beforeOpen)="tableProperties.openBorderSizePopup()"
+                                                (beforeClose)="tableProperties.closeBorderSizePopup()"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="e-de-property-div-padding">
+                                    <label class="e-de-prop-label">Cell</label>
+                                    <div>
+                                        <button ejs-button id="container_mergeCell" style="width:38px;height:32px" title="Merge cells" iconCss="e-de-icon-Cell e-de-tableprop-icons"
+                                            cssClass="e-de-prop-font-button" (click)="tableProperties.onMergeCell()" [disabled]="!tableProperties.canMerge"></button>
+                                    </div>
+                                </div>
+                                <div class="e-de-property-div-padding">
+                                    <label class="e-de-prop-label">Insert / Delete</label>
+                                    <div style="display:inline-flex">
+                                        <div class="e-btn-group">
+                                            <button ejs-button id="container_insertColumnLeft" style="width:38px;height:32px" title="Insert columns to the left" iconCss="e-de-icon-InsertLeft e-de-tableprop-icons"
+                                                cssClass="e-de-prop-font-button" (click)="tableProperties.onInsertColumnLeft()"></button>
+                                            <button ejs-button id="container_insertColumnRight" style="width:38px;height:32px" title="Insert columns to the right" iconCss="e-de-icon-InsertRight e-de-tableprop-icons"
+                                                cssClass="e-de-prop-font-button" (click)="tableProperties.onInsertColumnRight()"></button>
+                                            <button ejs-button id="container_insertRowAbove" style="width:38px;height:32px" title="Insert rows above" iconCss="e-de-icon-InsertAbove e-de-tableprop-icons"
+                                                cssClass="e-de-prop-font-button" (click)="tableProperties.onInsertRowAbove()"></button>
+                                            <button ejs-button id="container_insertRowBelow" style="width:38px;height:32px" title="Insert rows below" iconCss="e-de-icon-InsertBelow e-de-tableprop-icons"
+                                                cssClass="e-de-prop-font-button" (click)="tableProperties.onInsertRowBelow()">
+                                            </button>
+                                        </div>
+                                        <div class="e-btn-group">
+                                            <button ejs-button id="container_deleteRow" style="width:38px;height:32px;margin-left:9px" title="Delete rows" iconCss="e-de-icon-DeleteRows e-de-tableprop-icons"
+                                                cssClass="e-de-prop-font-button" (click)="tableProperties.onDeleteRow()"></button>
+                                            <button ejs-button id="container_deleteColumn" (click)="tableProperties.onDeleteColumn()" style="width:38px;height:32px;"
+                                                title="Delete columns" iconCss="e-de-icon-DeleteColumns e-de-tableprop-icons"
+                                                cssClass="e-de-prop-font-button"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="e-de-property-div-padding e-de-cellmargin-text">
+                                    <label class="e-de-prop-label">Cell Margin</label>
+                                    <div style="height: 60px;display:inline-flex">
+                                        <div style="width:50px;float:left;margin-right:9px">
+                                            <label class="e-de-prop-sub-label">Top</label>
+                                            <ejs-numerictextbox id="container_topMargin" #topMargin style="width:50px" Type="text" title="Top margin" [showSpinButton]="false"
+                                                [value]="tableProperties.topMargin" [format]="tableProperties.decimalFormat"
+                                                [decimals]="tableProperties.decimalNumber" [max]="500" [min]="0" (click)="tableProperties.onApplyTopMargin()"></ejs-numerictextbox>
+                                        </div>
+                                        <div style="width:50px;float:left;margin-right:9px">
+                                            <label class="e-de-prop-sub-label">Bottom</label>
+                                            <ejs-numerictextbox id="container_bottomMargin" #bottomMargin style="width:50px" Type="text" title="Bottom margin" [showSpinButton]="false"
+                                                [value]="tableProperties.bottomMargin" [format]="tableProperties.decimalFormat"
+                                                [decimals]="tableProperties.decimalNumber" [max]="500" [min]="0" (click)="tableProperties.onApplyBottomMargin()"></ejs-numerictextbox>
+                                        </div>
+                                        <div style="width:50px;float:left;margin-right:9px">
+                                            <label class="e-de-prop-sub-label">Left</label>
+                                            <ejs-numerictextbox id="container_leftMargin" #leftMargin style="width:50px" Type="text" title="Left margin " [showSpinButton]="false "
+                                                [value]="tableProperties.leftMargin" [format]="tableProperties.decimalFormat "
+                                                [decimals]="tableProperties.decimalNumber " [max]="500" [min]="0" (click)="tableProperties.onApplyLeftMargin() "></ejs-numerictextbox>
+                                        </div>
+                                        <div style="width:50px;float:left;margin-right:9px ">
+                                            <label class="e-de-prop-sub-label ">Right</label>
+                                            <ejs-numerictextbox id="container_rightMargin" #rightMargin style="width:50px " Type="text
                                                               " title="Right margin " [showSpinButton]="false " [value]="tableProperties.rightMargin"
-                                              [format]="tableProperties.decimalFormat " [decimals]="tableProperties.decimalNumber "
-                                              [max]="500" [min]="0" (click)="tableProperties.onApplyRightMargin() "></ejs-numerictextbox>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="e-de-property-div-padding " style="border-bottom-width:0px ">
-                                  <label class="e-de-prop-label ">Align Text</label>
-                                  <div style="margin-bottom: 10px; ">
-                                      <div class="e-btn-group ">
-                                          <button ejs-button id="container_alignTop" style="width:38px;height:32px" title="Align top" iconCss="e-de-icon-AlignTop e-de-tableprop-icons"
-                                              cssClass="e-de-prop-font-button" (click)="tableProperties.applyAlignTop()"></button>
-                                          <button ejs-button id="container_alignBottom" style="width:38px;height:32px" title="Align bottom" iconCss="e-de-icon-AlignBottom e-de-tableprop-icons"
-                                              cssClass="e-de-prop-font-button" (click)="tableProperties.applyAlignBottom()"></button>
-                                          <button ejs-button id="container_alignCenterHorizontal" style="width:38px;height:32px" title="Align center" iconCss="e-de-icon-AlignCenterTable e-de-tableprop-icons"
-                                              cssClass="e-de-prop-font-button" (click)="tableProperties.applyAlignCenterHorizontal()"></button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div id="borderSizeTarget" #borderSizePopup style="display:none ">
-                              <ul id="borderSizeListMenu" style="display: block; outline: 0px; width: 120px; height: auto; ">
-                                  <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size " style="display:block" (click)="tableProperties.onNoBorder() ">
-                                      <div class="ui-list-header-presetmenu " id="ui-zlist0">
-                                          <div>No Border</div>
-                                      </div>
-                                  </li>
-                                  <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size" style="display:block " (click)="tableProperties.onBorderSizePoint1() ">
-                                      <div class="ui-list-header-presetmenu" id="ui-zlist0 ">
-                                          <div>1px
-                                              <span class="ui-list-line e-de-border-width " style="margin-left:20px;border-bottom-width:1px;border-bottom-color:#000000"></span>
-                                          </div>
-                                      </div>
-                                  </li>
-                                  <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size
+                                                [format]="tableProperties.decimalFormat " [decimals]="tableProperties.decimalNumber "
+                                                [max]="500" [min]="0" (click)="tableProperties.onApplyRightMargin() "></ejs-numerictextbox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="e-de-property-div-padding " style="border-bottom-width:0px ">
+                                    <label class="e-de-prop-label ">Align Text</label>
+                                    <div style="margin-bottom: 10px; ">
+                                        <div class="e-btn-group ">
+                                            <button ejs-button id="container_alignTop" style="width:38px;height:32px" title="Align top" iconCss="e-de-icon-AlignTop e-de-tableprop-icons"
+                                                cssClass="e-de-prop-font-button" (click)="tableProperties.applyAlignTop()"></button>
+                                            <button ejs-button id="container_alignBottom" style="width:38px;height:32px" title="Align bottom" iconCss="e-de-icon-AlignBottom e-de-tableprop-icons"
+                                                cssClass="e-de-prop-font-button" (click)="tableProperties.applyAlignBottom()"></button>
+                                            <button ejs-button id="container_alignCenterHorizontal" style="width:38px;height:32px" title="Align center" iconCss="e-de-icon-AlignCenterTable e-de-tableprop-icons"
+                                                cssClass="e-de-prop-font-button" (click)="tableProperties.applyAlignCenterHorizontal()"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="borderSizeTarget" #borderSizePopup style="display:none ">
+                                <ul id="borderSizeListMenu" style="display: block; outline: 0px; width: 120px; height: auto; ">
+                                    <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size " style="display:block" (click)="tableProperties.onNoBorder() ">
+                                        <div class="ui-list-header-presetmenu " id="ui-zlist0">
+                                            <div>No Border</div>
+                                        </div>
+                                    </li>
+                                    <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size" style="display:block " (click)="tableProperties.onBorderSizePoint1() ">
+                                        <div class="ui-list-header-presetmenu" id="ui-zlist0 ">
+                                            <div>1px
+                                                <span class="ui-list-line e-de-border-width " style="margin-left:20px;border-bottom-width:1px;border-bottom-color:#000000"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size
                                                                                       " style="display:block " (click)="tableProperties.onBorderSizePoint5() ">
-                                      <div class="ui-list-header-presetmenu " id="ui-zlist0 ">
-                                          <div>1.5px
-                                              <span class="ui-list-line e-de-border-width " style="margin-left:10px;border-bottom-width:1.5px;border-bottom-color:#000000 "></span>
-                                          </div>
-                                      </div>
-                                  </li>
-                                  <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size " style="display:block" (click)="tableProperties.onBorderSize2()">
-                                      <div class="ui-list-header-presetmenu " id="ui-zlist0 ">
-                                          <div>2px
-                                              <span class="ui-list-line e-de-border-width " style="margin-left:20px;border-bottom-width:2px;border-bottom-color:#000000 "></span>
-                                          </div>
-                                      </div>
-                                  </li>
-                                  <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size" style="display:block " (click)="tableProperties.onBorderSize3() ">
-                                      <div class="ui-list-header-presetmenu" id="ui-zlist0 ">
-                                          <div>3px
-                                              <span class="ui-list-line e-de-border-width " style="margin-left:20px;border-bottom-width:3px;border-bottom-color:#000000"></span>
-                                          </div>
-                                      </div>
-                                  </li>
-                                  <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size" style="display:block " (click)="tableProperties.onBorderSize4() ">
-                                      <div class="ui-list-header-presetmenu" id="ui-zlist0 ">
-                                          <div>4px
-                                              <span class="ui-list-line e-de-border-width " style="margin-left:20px;border-bottom-width:4px;border-bottom-color:#000000"></span>
-                                          </div>
-                                      </div>
-                                  </li>
-                                  <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size" style="display:block " (click)="tableProperties.onBorderSize5() ">
-                                      <div class="ui-list-header-presetmenu" id="ui-zlist0 ">
-                                          <div>5px
-                                              <span class="ui-list-line e-de-border-width " style="margin-left:20px;border-bottom-width:5px;border-bottom-color:#000000 "></span>
-                                          </div>
-                                      </div>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                      <div id="table_text_properties" style="display: none">
-                          <div style="padding:10px;border-bottom:0.5px solid #E0E0E0">
-                              <label class="e-de-prop-label">Text</label>
-                              <div style="display:inline-flex;">
-                                  <div title="Font" style="margin-right: 9px">
-                                      <ejs-combobox #fontName [dataSource]='tableTextProperties.fontStyle' [fields]='tableTextProperties.fontfields' [query]='tableTextProperties.fontquery'
-                                          [popupHeight]="150" [popupWidth]="162" [width]="162" [allowCustom]=true [showClearButton]=false
-                                          [(value)]="tableTextProperties.fontName">
-                                          <ng-template #itemTemplate let-data>
-                                              <span [style.font-family]="data.FontName">{{data.FontName}}</span>
-                                          </ng-template>
-                                      </ejs-combobox>
-                                  </div>
-                                  <div title="Font Size">
-                                      <ejs-combobox #fontSize [dataSource]='tableTextProperties.fontSizeSource' [popupHeight]="180" [popupWidth]="78" [width]="78"
-                                          [allowCustom]=true [showClearButton]=false cssClass="e-de-prop-dropdown" [(value)]="tableTextProperties.fontSize"></ejs-combobox>
-                                  </div>
-                              </div>
-                              <div style="display:inline-flex;margin-top:8px;height: 32px">
-                                  <div class="e-de-prop-div-left e-btn-group">
-                                      <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Bold e-font-icons"
-                                          title="Bold (Ctrl+B)" [class.e-btn-toggle]='tableTextProperties.isBold' (click)="tableTextProperties.toggleBold()"></button>
-                                      <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Italic e-font-icons"
-                                          title="Italic (Ctrl+I)" [class.e-btn-toggle]='tableTextProperties.isItalic' (click)="tableTextProperties.toggleItalic()"></button>
-                                      <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Underline e-font-icons"
-                                          title="Underline (Ctrl+U)" [class.e-btn-toggle]='tableTextProperties.isUnderline'
-                                          (click)="tableTextProperties.toggleUnderline()"></button>
-                                      <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-last-button" iconCss="e-btn-icon e-de-icon-Strikethrough e-font-icons"
-                                          title="Strikethrough" [class.e-btn-toggle]='tableTextProperties.isStrikethrough'
-                                          (click)="tableTextProperties.toggleStrikethrough()">
-                                      </button>
-                                  </div>
-                                  <div class="e-de-prop-div-right e-btn-group" style="display:inline-flex;margin-left:8px">
-                                      <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-icons e-de-icon-Superscript"
-                                          [class.e-btn-toggle]='tableTextProperties.isSuperscript' title="Superscript (Ctrl+Shift++)"
-                                          (click)="tableTextProperties.toggleSuperscript()"></button>
-                                      <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-icons e-de-icon-Subscript"
-                                          [class.e-btn-toggle]='tableTextProperties.isSubscript' title="Subscript (Ctrl+=)"
-                                          (click)="tableTextProperties.toggleSubscript()"></button>
-                                  </div>
-                              </div>
-                              <div class="de-font-clr-picker e-de-prop-div-left" id="table_font_properties_color" style="display:inline-flex;margin-top:8px;height:32px">
-                                  <input ejs-colorpicker id="table_font_color_btn" className="de-clr-pkr-hvr" type="color" width="40.5px" showButtons="true"
-                                      value="#000000" title="Font color" [(value)]="tableTextProperties.fontColor" />
-                                  <ejs-splitbutton #table_highlight_color id="table_highlightcolor" className="de-clr-pkr-hvr" iconCss="de-hglt-color" style="padding:0px 1px 1px 1px;height:32px;width:34.5px;"
-                                      target="#table_highlight_color_ppty" (click)="tableTextProperties.hgltSplitObjClick()"
-                                      (close)="tableTextProperties.closePopup()" (beforeOpen)="tableTextProperties.openPopup()"></ejs-splitbutton>
-                                  <div id="table_highlight_color_ppty" style="display: none;">
-                                      <div class="e-de-hglt-btn" id="table_yellowDiv" style="background-color: rgb(255, 255, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_brightGreenDiv" style="background-color: rgb(0, 255, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_turquoiseDiv" style="background-color: rgb(0, 255, 255);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_hotPinkDiv" style="background-color: rgb(255, 0, 255);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_blueDiv" style="background-color: rgb(0, 0, 255);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_redDiv" style="background-color: rgb(255, 0, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_darkBlueDiv" style="background-color: rgb(0, 0, 128);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_tealDiv" style="background-color: rgb(0, 128, 128);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_greenDiv" style="background-color: rgb(0, 128, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_violetDiv" style="background-color: rgb(128, 0, 128);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_darkRedDiv" style="background-color: rgb(128, 0, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_darkYellowDiv" style="background-color: rgb(128, 128, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_gray50Div" style="background-color: rgb(128, 128, 128);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_gray25Div" style="background-color: rgb(192, 192, 192);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-de-hglt-btn" id="table_blackDiv" style="background-color: rgb(0, 0, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
-                                      <div class="e-hglt-no-color">
-                                          <div id="table_noColorDiv" style="width:24px;height:24px;background-color:#ffffff;margin:3px;" class="e-color-selected" (click)="tableTextProperties.onHighLightColor($event)">
-                                              <div class="de-hglt-no-color">No color</div>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <button ejs-button cssClass="e-de-prop-font-last-button" iconCss="e-de-icon-ClearAll e-font-icons" title="Clear all formatting"
-                                      style="width: 40.5px;height: 32px;" (click)="documentEditor.editor.clearFormatting()"></button>
-                              </div>
-                          </div>
-                          <div>
-                              <div id="table_font_properties_paragraph" style="padding:10px;">
-                                  <label class="e-de-prop-label" style="width:26px;">Paragraph</label>
-                                  <div id="table_font_properties_styleDiv" style="margin-bottom: 8px;" title="Styles">
-                                      <ejs-dropdownlist #table_style_dropdown id="table_font_properties_style" style="width:248px;font-size: 12px;color: #000000;letter-spacing: 0.05px;"
-                                          [dataSource]="tableParagraphProperties.stylesData" cssClass="e-de-prop-dropdown"
-                                          [query]='tableParagraphProperties.stylequery' [fields]="tableParagraphProperties.stylefields"
-                                          (open)="tableParagraphProperties.updateOptions($event)" (change)="tableParagraphProperties.selectStyleValue($event)"
-                                          (close)="tableParagraphProperties.closeStyleValue()">
-                                          <ng-template #itemTemplate let-data>
-                                              <span [ngStyle]="data.Style">{{data.StyleName}}</span>
-                                          </ng-template>
-                                          <ng-template #footerTemplate>
-                                              <span class="create-style-footer">Manage Styles</span>
-                                          </ng-template>
-                                      </ejs-dropdownlist>
-                                  </div>
-                                  <div id="table_font_properties_indentWholeDiv" style="display: flex;">
-                                      <div id="table_font_properties_indentDiv" style="width:164px;height:32px;display:flex;" class="e-de-prop-div-left e-btn-group">
-                                          <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignLeft e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Left')"
-                                              title="Align left (Ctrl+L)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="tableParagraphProperties.alignLeft"></button>
-                                          <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignCenter e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Center')"
-                                              title="Center (Ctrl+E)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="tableParagraphProperties.alignCenter"></button>
-                                          <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignRight e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Right')"
-                                              title="Align right (Ctrl+R)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="tableParagraphProperties.alignRight"></button>
-                                          <button ejs-button cssClass="e-de-prop-indent-last-button" iconCss="e-de-icon-Justify e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Justify')"
-                                              title="Justify (Ctrl+J)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="tableParagraphProperties.alignJustify"></button>
-                                      </div>
-                                      <div id="table_font_properties_indentDiv" style="width: 75px; height: 32px; display: flex; margin-left: 8px;" class="e-de-prop-div-left e-btn-group">
-                                          <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-DecreaseIndent e-font-icons" (click)="documentEditor.editor.decreaseIndent()"
-                                              title="Decrease indent" style="width: 37px;height:32px;"></button>
-                                          <button ejs-button cssClass="e-de-prop-indent-last-button" iconCss="e-de-icon-IncreaseIndent e-font-icons" (click)="documentEditor.editor.increaseIndent()"
-                                              title="Increase indent" style="width: 37px;height:32px;"></button>
-                                      </div>
-                                  </div>
-                                  <div id="table_font_properties_listDiv" style="margin-top:8px;display:flex;">
-                                      <button ejs-dropdownbutton [items]="tableParagraphProperties.lineHeight" iconCss="e-de-icon-LineSpacing" cssClass="e-de-prop-splitbutton"
-                                          (select)="tableParagraphProperties.lineSpacingAction($event)" title="Line spacing"></button>
-                                      <div id="table_font_properties_listDropDiv" class="de-split-button" style="padding-left: 10px;">
-                                          <ejs-splitbutton id="table_bullet_list_btn" iconCss="e-de-icon-Bullets" cssClass="e-de-prop-splitbutton" (close)="tableParagraphProperties.closeBullets()"
-                                              (beforeOpen)="tableParagraphProperties.openBullets()" target="#table_bullet_list"
-                                              title="Bullets" (click)="tableParagraphProperties.bulletSplitObjClick()"></ejs-splitbutton>
-                                          <div id="table_bullet_list" style="width: 198px; height: auto; display: none;">
-                                              <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="table_listMenu" style="display: block; outline: 0px;">
-                                                  <li class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" (click)="tableParagraphProperties.noneClick()"
-                                                      style="display:block;">
-                                                      <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>
-                                                              <span class="e-de-icon-bullet-none"></span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                                  <li (click)="tableParagraphProperties.dotClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block;">
-                                                      <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>
-                                                              <span class="e-de-icon-bullet-dot"></span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                                  <li (click)="tableParagraphProperties.circleClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block;">
-                                                      <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>
-                                                              <span class="e-de-icon-bullet-circle"></span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                                  <li (click)="tableParagraphProperties.squareClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block;">
-                                                      <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>
-                                                              <span class="e-de-icon-bullet-square"></span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                                  <li (click)="tableParagraphProperties.flowerClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block;">
-                                                      <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>
-                                                              <span class="e-de-icon-bullet-flower"></span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                                  <li (click)="tableParagraphProperties.arrowClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block;">
-                                                      <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>
-                                                              <span class="e-de-icon-bullet-arrow"></span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                                  <li (click)="tableParagraphProperties.tickClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block;">
-                                                      <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>
-                                                              <span class="e-de-icon-bullet-tick"></span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <ejs-splitbutton id="table_number_list_btn" iconCss="e-de-icon-Numbering" cssClass="e-de-prop-splitbutton" (beforeClose)="tableParagraphProperties.closeNumbering()"
-                                              (beforeOpen)="tableParagraphProperties.openNumbering()" target="#table_numbering_list"
-                                              title="Numbering" (click)="tableParagraphProperties.numberingSplitObjClick()"></ejs-splitbutton>
-                                          <div id="table_numbering_list" style="width: 213px; height: auto;">
-                                              <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="table_listMenu" style="display: block; outline: 0px;">
-                                                  <li (click)="tableParagraphProperties.numberedNoneClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block">
-                                                      <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>
-                                                              <span class="ui-bullets">None</span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                                  <li (click)="tableParagraphProperties.numberedDotClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block">
-                                                      <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>1.
-                                                              <span class="ui-list-line"></span>
-                                                          </div>
-                                                          <div>2.
-                                                              <span class="ui-list-line"></span>
-                                                          </div>
-                                                          <div>3.
-                                                              <span class="ui-list-line"> </span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                                  <li (click)="tableParagraphProperties.numberedLowLetterClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block">
-                                                      <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>a.
-                                                              <span class="ui-list-line"></span>
-                                                          </div>
-                                                          <div>b.
-                                                              <span class="ui-list-line"></span>
-                                                          </div>
-                                                          <div>c.
-                                                              <span class="ui-list-line"> </span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                                  <li (click)="tableParagraphProperties.numberedUpLetterClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block">
-                                                      <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>A.
-                                                              <span class="ui-list-line"></span>
-                                                          </div>
-                                                          <div>B.
-                                                              <span class="ui-list-line"></span>
-                                                          </div>
-                                                          <div>C.
-                                                              <span class="ui-list-line"> </span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                                  <li (click)="tableParagraphProperties.numberedLowRomanClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block">
-                                                      <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>i.
-                                                              <span class="ui-list-line"></span>
-                                                          </div>
-                                                          <div>ii.
-                                                              <span class="ui-list-line"></span>
-                                                          </div>
-                                                          <div>iii.
-                                                              <span class="ui-list-line"> </span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                                  <li (click)="tableParagraphProperties.numberedUpRomanClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
-                                                      style="display:block">
-                                                      <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
-                                                          <div>I.
-                                                              <span class="ui-list-line"></span>
-                                                          </div>
-                                                          <div>II.
-                                                              <span class="ui-list-line"></span>
-                                                          </div>
-                                                          <div>III.
-                                                              <span class="ui-list-line"> </span>
-                                                          </div>
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <ejs-tab #table_tab id="container_tablePropertiesTab " class="e-de-property-tab " [animation]="tableProperties.animation">
-                          <e-tabitems>
-                              <e-tabitem [header]='tableProperties.header0' content='#table_properties'>
-                                  <div>Table</div>
-                              </e-tabitem>
-                              <e-tabitem [header]='tableProperties.header1' content='#table_text_properties'></e-tabitem>
-                          </e-tabitems>
-                      </ejs-tab>
-                  </div>
-                  <div id="toc_properties_pane" style="padding:9px;width:269px" [style.display]="tocProperties.show?'block':'none'"></div>
-              </div>
-          </div>
-          <div id="documenteditor_statusbar" style="display: none"></div>
-      </div>
-      <div class="overlay" id="popup-overlay" style="display: block;">
-      </div>
-      <div id='waiting-popup' style="display: block;">
-          <svg class="circular" height="40" width="40">
-              <circle class="circle-path" cx="25" cy="25" r="20" fill="none" stroke-width="6" stroke-miterlimit="10" />
-          </svg>
-      </div>
-  </div>
+                                        <div class="ui-list-header-presetmenu " id="ui-zlist0 ">
+                                            <div>1.5px
+                                                <span class="ui-list-line e-de-border-width " style="margin-left:10px;border-bottom-width:1.5px;border-bottom-color:#000000 "></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size " style="display:block" (click)="tableProperties.onBorderSize2()">
+                                        <div class="ui-list-header-presetmenu " id="ui-zlist0 ">
+                                            <div>2px
+                                                <span class="ui-list-line e-de-border-width " style="margin-left:20px;border-bottom-width:2px;border-bottom-color:#000000 "></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size" style="display:block " (click)="tableProperties.onBorderSize3() ">
+                                        <div class="ui-list-header-presetmenu" id="ui-zlist0 ">
+                                            <div>3px
+                                                <span class="ui-list-line e-de-border-width " style="margin-left:20px;border-bottom-width:3px;border-bottom-color:#000000"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size" style="display:block " (click)="tableProperties.onBorderSize4() ">
+                                        <div class="ui-list-header-presetmenu" id="ui-zlist0 ">
+                                            <div>4px
+                                                <span class="ui-list-line e-de-border-width " style="margin-left:20px;border-bottom-width:4px;border-bottom-color:#000000"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items de-list-item-size" style="display:block " (click)="tableProperties.onBorderSize5() ">
+                                        <div class="ui-list-header-presetmenu" id="ui-zlist0 ">
+                                            <div>5px
+                                                <span class="ui-list-line e-de-border-width " style="margin-left:20px;border-bottom-width:5px;border-bottom-color:#000000 "></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="table_text_properties" style="display: none">
+                            <div style="padding:10px;border-bottom:0.5px solid #E0E0E0">
+                                <label class="e-de-prop-label">Text</label>
+                                <div style="display:inline-flex;">
+                                    <div title="Font" style="margin-right: 9px">
+                                        <ejs-combobox #fontName [dataSource]='tableTextProperties.fontStyle' [fields]='tableTextProperties.fontfields' [query]='tableTextProperties.fontquery'
+                                            [popupHeight]="150" [popupWidth]="162" [width]="162" [allowCustom]=true [showClearButton]=false
+                                            [(value)]="tableTextProperties.fontName">
+                                            <ng-template #itemTemplate let-data>
+                                                <span [style.font-family]="data.FontName">{{data.FontName}}</span>
+                                            </ng-template>
+                                        </ejs-combobox>
+                                    </div>
+                                    <div title="Font Size">
+                                        <ejs-combobox #fontSize [dataSource]='tableTextProperties.fontSizeSource' [popupHeight]="180" [popupWidth]="78" [width]="78"
+                                            [allowCustom]=true [showClearButton]=false cssClass="e-de-prop-dropdown" [(value)]="tableTextProperties.fontSize"></ejs-combobox>
+                                    </div>
+                                </div>
+                                <div style="display:inline-flex;margin-top:8px;height: 32px">
+                                    <div class="e-de-prop-div-left e-btn-group">
+                                        <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Bold e-font-icons"
+                                            title="Bold (Ctrl+B)" [class.e-btn-toggle]='tableTextProperties.isBold' (click)="tableTextProperties.toggleBold()"></button>
+                                        <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Italic e-font-icons"
+                                            title="Italic (Ctrl+I)" [class.e-btn-toggle]='tableTextProperties.isItalic' (click)="tableTextProperties.toggleItalic()"></button>
+                                        <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-btn-icon e-de-icon-Underline e-font-icons"
+                                            title="Underline (Ctrl+U)" [class.e-btn-toggle]='tableTextProperties.isUnderline'
+                                            (click)="tableTextProperties.toggleUnderline()"></button>
+                                        <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-last-button" iconCss="e-btn-icon e-de-icon-Strikethrough e-font-icons"
+                                            title="Strikethrough" [class.e-btn-toggle]='tableTextProperties.isStrikethrough'
+                                            (click)="tableTextProperties.toggleStrikethrough()">
+                                        </button>
+                                    </div>
+                                    <div class="e-de-prop-div-right e-btn-group" style="display:inline-flex;margin-left:8px">
+                                        <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-icons e-de-icon-Superscript"
+                                            [class.e-btn-toggle]='tableTextProperties.isSuperscript' title="Superscript (Ctrl+Shift++)"
+                                            (click)="tableTextProperties.toggleSuperscript()"></button>
+                                        <button ejs-button style="width: 40.5px;height: 32px;" cssClass="e-de-prop-font-button" iconCss="e-icons e-de-icon-Subscript"
+                                            [class.e-btn-toggle]='tableTextProperties.isSubscript' title="Subscript (Ctrl+=)"
+                                            (click)="tableTextProperties.toggleSubscript()"></button>
+                                    </div>
+                                </div>
+                                <div class="de-font-clr-picker e-de-prop-div-left" id="table_font_properties_color" style="display:inline-flex;margin-top:8px;height:32px">
+                                    <input ejs-colorpicker id="table_font_color_btn" className="de-clr-pkr-hvr" type="color" width="40.5px" showButtons="true"
+                                        value="#000000" title="Font color" [(value)]="tableTextProperties.fontColor" />
+                                    <ejs-splitbutton #table_highlight_color id="table_highlightcolor" className="de-clr-pkr-hvr" iconCss="de-hglt-color" style="padding:0px 1px 1px 1px;height:32px;width:34.5px;"
+                                        target="#table_highlight_color_ppty" (click)="tableTextProperties.hgltSplitObjClick()"
+                                        (close)="tableTextProperties.closePopup()" (beforeOpen)="tableTextProperties.openPopup()"></ejs-splitbutton>
+                                    <div id="table_highlight_color_ppty" style="display: none;">
+                                        <div class="e-de-hglt-btn" id="table_yellowDiv" style="background-color: rgb(255, 255, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_brightGreenDiv" style="background-color: rgb(0, 255, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_turquoiseDiv" style="background-color: rgb(0, 255, 255);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_hotPinkDiv" style="background-color: rgb(255, 0, 255);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_blueDiv" style="background-color: rgb(0, 0, 255);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_redDiv" style="background-color: rgb(255, 0, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_darkBlueDiv" style="background-color: rgb(0, 0, 128);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_tealDiv" style="background-color: rgb(0, 128, 128);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_greenDiv" style="background-color: rgb(0, 128, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_violetDiv" style="background-color: rgb(128, 0, 128);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_darkRedDiv" style="background-color: rgb(128, 0, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_darkYellowDiv" style="background-color: rgb(128, 128, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_gray50Div" style="background-color: rgb(128, 128, 128);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_gray25Div" style="background-color: rgb(192, 192, 192);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-de-hglt-btn" id="table_blackDiv" style="background-color: rgb(0, 0, 0);" (click)="tableTextProperties.onHighLightColor($event)"></div>
+                                        <div class="e-hglt-no-color">
+                                            <div id="table_noColorDiv" style="width:24px;height:24px;background-color:#ffffff;margin:3px;" class="e-color-selected" (click)="tableTextProperties.onHighLightColor($event)">
+                                                <div class="de-hglt-no-color">No color</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button ejs-button cssClass="e-de-prop-font-last-button" iconCss="e-de-icon-ClearAll e-font-icons" title="Clear all formatting"
+                                        style="width: 40.5px;height: 32px;" (click)="documentEditor.editor.clearFormatting()"></button>
+                                </div>
+                            </div>
+                            <div>
+                                <div id="table_font_properties_paragraph" style="padding:10px;">
+                                    <label class="e-de-prop-label" style="width:26px;">Paragraph</label>
+                                    <div id="table_font_properties_styleDiv" style="margin-bottom: 8px;" title="Styles">
+                                        <ejs-dropdownlist #table_style_dropdown id="table_font_properties_style" style="width:248px;font-size: 12px;color: #000000;letter-spacing: 0.05px;"
+                                            [dataSource]="tableParagraphProperties.stylesData" cssClass="e-de-prop-dropdown"
+                                            [query]='tableParagraphProperties.stylequery' [fields]="tableParagraphProperties.stylefields"
+                                            (open)="tableParagraphProperties.updateOptions($event)" (change)="tableParagraphProperties.selectStyleValue($event)"
+                                            (close)="tableParagraphProperties.closeStyleValue()">
+                                            <ng-template #itemTemplate let-data>
+                                                <span [ngStyle]="data.Style">{{data.StyleName}}</span>
+                                            </ng-template>
+                                            <ng-template #footerTemplate>
+                                                <span class="create-style-footer">Manage Styles</span>
+                                            </ng-template>
+                                        </ejs-dropdownlist>
+                                    </div>
+                                    <div id="table_font_properties_indentWholeDiv" style="display: flex;">
+                                        <div id="table_font_properties_indentDiv" style="width:164px;height:32px;display:flex;" class="e-de-prop-div-left e-btn-group">
+                                            <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignLeft e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Left')"
+                                                title="Align left (Ctrl+L)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="tableParagraphProperties.alignLeft"></button>
+                                            <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignCenter e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Center')"
+                                                title="Center (Ctrl+E)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="tableParagraphProperties.alignCenter"></button>
+                                            <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-AlignRight e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Right')"
+                                                title="Align right (Ctrl+R)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="tableParagraphProperties.alignRight"></button>
+                                            <button ejs-button cssClass="e-de-prop-indent-last-button" iconCss="e-de-icon-Justify e-font-icons" (click)="documentEditor.editor.toggleTextAlignment('Justify')"
+                                                title="Justify (Ctrl+J)" style="width: 40.5px;height: 32px;" [class.e-btn-toggle]="tableParagraphProperties.alignJustify"></button>
+                                        </div>
+                                        <div id="table_font_properties_indentDiv" style="width: 75px; height: 32px; display: flex; margin-left: 8px;" class="e-de-prop-div-left e-btn-group">
+                                            <button ejs-button cssClass="e-de-prop-indent-button" iconCss="e-de-icon-DecreaseIndent e-font-icons" (click)="documentEditor.editor.decreaseIndent()"
+                                                title="Decrease indent" style="width: 37px;height:32px;"></button>
+                                            <button ejs-button cssClass="e-de-prop-indent-last-button" iconCss="e-de-icon-IncreaseIndent e-font-icons" (click)="documentEditor.editor.increaseIndent()"
+                                                title="Increase indent" style="width: 37px;height:32px;"></button>
+                                        </div>
+                                    </div>
+                                    <div id="table_font_properties_listDiv" style="margin-top:8px;display:flex;">
+                                        <button ejs-dropdownbutton [items]="tableParagraphProperties.lineHeight" iconCss="e-de-icon-LineSpacing" cssClass="e-de-prop-splitbutton"
+                                            (select)="tableParagraphProperties.lineSpacingAction($event)" title="Line spacing"></button>
+                                        <div id="table_font_properties_listDropDiv" class="de-split-button" style="padding-left: 10px;">
+                                            <ejs-splitbutton id="table_bullet_list_btn" iconCss="e-de-icon-Bullets" cssClass="e-de-prop-splitbutton" (close)="tableParagraphProperties.closeBullets()"
+                                                (beforeOpen)="tableParagraphProperties.openBullets()" target="#table_bullet_list"
+                                                title="Bullets" (click)="tableParagraphProperties.bulletSplitObjClick()"></ejs-splitbutton>
+                                            <div id="table_bullet_list" style="width: 198px; height: auto; display: none;">
+                                                <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="table_listMenu" style="display: block; outline: 0px;">
+                                                    <li class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" (click)="tableParagraphProperties.noneClick()"
+                                                        style="display:block;">
+                                                        <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>
+                                                                <span class="e-de-icon-bullet-none"></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li (click)="tableParagraphProperties.dotClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block;">
+                                                        <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>
+                                                                <span class="e-de-icon-bullet-dot"></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li (click)="tableParagraphProperties.circleClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block;">
+                                                        <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>
+                                                                <span class="e-de-icon-bullet-circle"></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li (click)="tableParagraphProperties.squareClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block;">
+                                                        <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>
+                                                                <span class="e-de-icon-bullet-square"></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li (click)="tableParagraphProperties.flowerClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block;">
+                                                        <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>
+                                                                <span class="e-de-icon-bullet-flower"></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li (click)="tableParagraphProperties.arrowClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block;">
+                                                        <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>
+                                                                <span class="e-de-icon-bullet-arrow"></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li (click)="tableParagraphProperties.tickClick()" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block;">
+                                                        <div class="ui-bullet-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>
+                                                                <span class="e-de-icon-bullet-tick"></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <ejs-splitbutton id="table_number_list_btn" iconCss="e-de-icon-Numbering" cssClass="e-de-prop-splitbutton" (beforeClose)="tableParagraphProperties.closeNumbering()"
+                                                (beforeOpen)="tableParagraphProperties.openNumbering()" target="#table_numbering_list"
+                                                title="Numbering" (click)="tableParagraphProperties.numberingSplitObjClick()"></ejs-splitbutton>
+                                            <div id="table_numbering_list" style="width: 213px; height: auto;">
+                                                <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="table_listMenu" style="display: block; outline: 0px;">
+                                                    <li (click)="tableParagraphProperties.numberedNoneClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block">
+                                                        <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>
+                                                                <span class="ui-bullets">None</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li (click)="tableParagraphProperties.numberedDotClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block">
+                                                        <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>1.
+                                                                <span class="ui-list-line"></span>
+                                                            </div>
+                                                            <div>2.
+                                                                <span class="ui-list-line"></span>
+                                                            </div>
+                                                            <div>3.
+                                                                <span class="ui-list-line"> </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li (click)="tableParagraphProperties.numberedLowLetterClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block">
+                                                        <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>a.
+                                                                <span class="ui-list-line"></span>
+                                                            </div>
+                                                            <div>b.
+                                                                <span class="ui-list-line"></span>
+                                                            </div>
+                                                            <div>c.
+                                                                <span class="ui-list-line"> </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li (click)="tableParagraphProperties.numberedUpLetterClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block">
+                                                        <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>A.
+                                                                <span class="ui-list-line"></span>
+                                                            </div>
+                                                            <div>B.
+                                                                <span class="ui-list-line"></span>
+                                                            </div>
+                                                            <div>C.
+                                                                <span class="ui-list-line"> </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li (click)="tableParagraphProperties.numberedLowRomanClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block">
+                                                        <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>i.
+                                                                <span class="ui-list-line"></span>
+                                                            </div>
+                                                            <div>ii.
+                                                                <span class="ui-list-line"></span>
+                                                            </div>
+                                                            <div>iii.
+                                                                <span class="ui-list-line"> </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li (click)="tableParagraphProperties.numberedUpRomanClick()" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size"
+                                                        style="display:block">
+                                                        <div class="ui-list-header-presetmenu" id="table_ui-zlist0">
+                                                            <div>I.
+                                                                <span class="ui-list-line"></span>
+                                                            </div>
+                                                            <div>II.
+                                                                <span class="ui-list-line"></span>
+                                                            </div>
+                                                            <div>III.
+                                                                <span class="ui-list-line"> </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ejs-tab #table_tab id="container_tablePropertiesTab " class="e-de-property-tab " [animation]="tableProperties.animation">
+                            <e-tabitems>
+                                <e-tabitem [header]='tableProperties.header0' content='#table_properties'>
+                                    <div>Table</div>
+                                </e-tabitem>
+                                <e-tabitem [header]='tableProperties.header1' content='#table_text_properties'></e-tabitem>
+                            </e-tabitems>
+                        </ejs-tab>
+                    </div>
+                    <div id="toc_properties_pane" style="padding:9px;width:269px" [style.display]="tocProperties.show?'block':'none'"></div>
+                </div>
+            </div>
+            <div id="documenteditor_statusbar" style="display: none"></div>
+        </div>
+        <div class="overlay" id="popup-overlay" style="display: block;">
+        </div>
+        <div id='waiting-popup' style="display: block;">
+            <svg class="circular" height="40" width="40">
+                <circle class="circle-path" cx="25" cy="25" r="20" fill="none" stroke-width="6" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
 </div>
 <style>
-
-
-  /** sample level font icons ends*/
+    /** sample level font icons ends*/
 </style>
 <script>
-  window.onbeforeunload = () => {
-      return 'Want to save your changes?';
-  };    
+    window.onbeforeunload = () => {
+        return 'Want to save your changes?';
+    };    
 </script>
