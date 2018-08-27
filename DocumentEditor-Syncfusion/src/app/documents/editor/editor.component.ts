@@ -135,6 +135,8 @@ export class EditorComponent {
     private isComponentCreated: boolean = false;
     private isRetrieving: boolean = false;
 
+    private isTemplateEditing: boolean = false;
+
     public textProperties: TextPropertiesModel = new TextPropertiesModel(this);
     public paragraphProperties: ParagraphPropertiesModel = new ParagraphPropertiesModel(this);
     public imageProperties: ImagePropertiesModel = new ImagePropertiesModel();
@@ -269,7 +271,7 @@ export class EditorComponent {
         }
         document.getElementById('documenteditor_titlebar').style.display = '';
         document.getElementById('documenteditor_statusbar').style.display = '';
-        this.titleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), this.documentEditor, true);
+        this.titleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), this.documentEditor, true, this.httpClient);
         this.statusBar = new StatusBar(document.getElementById('documenteditor_statusbar'), this.documentEditor);
         this.updateContainerSize();
         this.documentEditor.resize();
@@ -397,6 +399,8 @@ export class EditorComponent {
     public onToolbarClick = (args: ClickEventArgs) => {
         switch (args.item.id) {
             case 'new':
+                this.isTemplateEditing = false;
+                this.titleBar.saveTemplate=false;
                 this.enableIcons();
                 this.newDocument();
                 break;
@@ -454,6 +458,7 @@ export class EditorComponent {
                 this.onUseLocalClipboard();
                 break;
             case 'newtemplate':
+                this.isTemplateEditing=true;
                 this.newDocument();
                 break;
             case 'field':
@@ -505,6 +510,7 @@ export class EditorComponent {
             templates[i].addEventListener('click', (e: Event) => { this.templateSelection(e); });
         }
     }
+    
     /* tslint:disable:no-any */
     private onFileChange = (args: any): void => {
         if (args.target.files[0]) {
@@ -923,7 +929,7 @@ export class EditorComponent {
           //this.httpClient.get<TemplateListItem[]>('http://localhost:52061/api/values/GetTemplateList')
           this.httpClient.get<Template[]>('http://localhost:52061/api/templates')
             .subscribe(data => { 
-   
+                
 
                 this.cntnt += '<div id=\'mainContent\'>';
                 this.cntnt += "<input type='text' class='e-input' id='docText' name='fileName' placeholder='Enter file name'>";
@@ -1002,12 +1008,16 @@ export class EditorComponent {
             let selectedItemId: string = selectedItem[0].id;
             if (selectedItemId === 'Blank') {
                 this.documentEditor.openBlank(); //this.documentEditor.serialize())
+                this.titleBar.saveTemplate=true;
             } else {
-                
-                //this.httpClient.get<string>('http://localhost:52061/api/values/GetTemplate/' + selectedItemId)
+     
                 this.httpClient.get<string>('http://localhost:52061/api/templates/' + selectedItemId)
                 .subscribe(data => {
-                    //console.log(data);
+                    if(this.isTemplateEditing){
+                        this.titleBar.saveTemplate=true;
+                        this.titleBar.docTemplate.id = parseInt(selectedItemId);
+                    }
+                    
                     console.log(data)
                     this.documentEditor.open(JSON.stringify(data));
                 });

@@ -3,6 +3,8 @@ import { DocumentEditor, FormatType } from '@syncfusion/ej2-ng-documenteditor';
 import { Button } from '@syncfusion/ej2-ng-buttons';
 import { DropDownButton, ItemModel } from '@syncfusion/ej2-ng-splitbuttons';
 import { MenuEventArgs } from '@syncfusion/ej2-ng-navigations';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { Template } from '../shared/template.model';
 /**
  * Represents document editor title bar.
  */
@@ -18,8 +20,10 @@ export class TitleBar {
     private documentEditor: DocumentEditor;
     private testDoc: string;
     private updatedStr: string = "";
+    public docTemplate: Template=new Template();
+    public saveTemplate: boolean = false;
 
-    constructor(element: HTMLElement, docEditor: DocumentEditor, isShareNeeded: Boolean) {
+    constructor(element: HTMLElement, docEditor: DocumentEditor, isShareNeeded: Boolean, private httpClient: HttpClient) {
         //initializes title bar elements.
         this.tileBarDiv = element;
         this.documentEditor = docEditor;
@@ -53,7 +57,7 @@ export class TitleBar {
 
 
         this.testOpen = this.addButton('', 'Test Open', btnStyles, 'de-test', 'Test Open', false) as Button;
-        this.testSave = this.addButton('', 'Test Save', btnStyles, 'de-test', 'Test Save', false) as Button;
+        this.testSave = this.addButton('', 'Save Template', btnStyles, 'de-test', 'Save Template', false) as Button;
     }
     private setTooltipForPopup(): void {
         // tslint:disable-next-line:max-line-length
@@ -140,13 +144,22 @@ export class TitleBar {
     }
 
     private onTestSave = (): void => {
-        console.log(this.documentEditor.serialize());
-        this.testDoc = this.documentEditor.serialize();
         this.updatedStr = "Save";
+        if(this.saveTemplate){
+            let template: Template = new Template();
+            template.id=this.docTemplate.id;
+            template.templateName=this.documentEditor.documentName;
+            template.templateContent=this.documentEditor.serialize();
+            this.httpClient.post<Template>('http://localhost:52061/api/templates', template)
+            .subscribe(data => {
+                console.log('New Template id: ' + data)
+            });
+        }
     }
 
     private onTestOpen = (): void => {
-        this.documentEditor.open(this.testDoc);
-        alert(this.updatedStr);
+        //this.documentEditor.open(this.testDoc);
+        //alert(this.updatedStr);
+        alert(this.docTemplate.id);
     }
 }

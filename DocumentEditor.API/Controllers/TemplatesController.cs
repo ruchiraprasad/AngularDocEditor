@@ -16,7 +16,12 @@ namespace DocumentEditor.API.Controllers
             using (var db = new TestDocDbContext())
             {
                 var templates = db.Templates.ToList();
-                return templates;
+                var newTemplates = templates.Select(s => new Template()
+                {
+                    Id = s.Id,
+                    TemplateName = s.TemplateName
+                });
+                return newTemplates;
             }
         }
 
@@ -26,23 +31,59 @@ namespace DocumentEditor.API.Controllers
             using (var db = new TestDocDbContext())
             {
                 var template = db.Templates.FirstOrDefault(x => x.Id == id);
-
-                var txt = System.IO.File.ReadAllText(@"template.txt");
-                txt = txt.Replace("{@@name}", "Template 1");
-                template.TemplateContent = txt;
-
                 return Ok(template.TemplateContent);
             }
         }
 
-        //[HttpGet, Route("templates/{templateId}")]
-        //public IActionResult GetTemplate(string templateId)
+        [HttpPost]
+        public IActionResult Post([FromBody]Template model)
+        {
+            if (ModelState.IsValid)
+            {
+                var template = new Template();
+                template.TemplateName = model.TemplateName;
+                template.TemplateContent = model.TemplateContent;
+
+                using (var db = new TestDocDbContext())
+                {
+                    if(model.Id == 0)
+                    {
+                        db.Templates.Add(template);
+                    }
+                    else
+                    {
+                        var templateUpdate = db.Templates.FirstOrDefault(x => x.Id == model.Id);
+                        templateUpdate.TemplateName = model.TemplateName;
+                        templateUpdate.TemplateContent = model.TemplateContent;
+                    }
+
+                    db.SaveChanges();
+                }
+
+                return Ok(template.Id);
+            }
+
+            return Ok();
+        }
+
+        //[HttpPost]
+        //public IActionResult Post([FromBody] Template model)
         //{
-        //    using (var db = new TestDocDbContext())
+        //    if (!ModelState.IsValid)
         //    {
-        //        var template = db.Templates.FirstOrDefault(x => x.Id == int.Parse(templateId));
-        //        return Ok(template);
+        //        var template = new Template();
+        //        template.TemplateName = model.TemplateName;
+        //        template.TemplateContent = model.TemplateContent;
+
+        //        using (var db = new TestDocDbContext())
+        //        {
+        //            db.Templates.Add(template);
+        //            db.SaveChanges();
+        //        }
         //    }
+
+
+        //    return Ok();
         //}
     }
 }
