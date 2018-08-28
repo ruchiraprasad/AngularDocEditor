@@ -1327,3 +1327,16 @@ body {
 {
     text-transform: none !important; 
 }
+ 
+ #dialogContainer
+{
+    width: 1265px !important; 
+    height:700px !important;
+    max-height: 700px !important;
+}
+
+.e-de-ndlg-target .template {
+    width: 165px !important; 
+    height: 100px !important; 
+    text-align: center;
+} 

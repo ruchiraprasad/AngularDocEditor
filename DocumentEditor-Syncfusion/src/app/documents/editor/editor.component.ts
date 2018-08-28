@@ -952,12 +952,12 @@ export class EditorComponent {
 
                 data.forEach((item, index) => {
                     
-                    if (index % 3 == 0)
+                    if (index % 7 == 0)
                         this.cntnt += '<br/><br/>';
 
                     this.cntnt += '<div id=\'' + item.id + '\'  class=\'template\'>';
                     this.cntnt += '<div id=\'' + item.id + '\' class=\'innerTemplate\'>' +  item.templateName + '</div>';
-                    this.cntnt += '<label for=\'' + item.templateName + '\' class=\'labelDiv\'>' +  item.templateName + '</label>'
+                    //this.cntnt += '<label for=\'' + item.templateName + '\' class=\'labelDiv\'>' +  item.templateName + '</label>'
                     this.cntnt += '</div>';
                 })
                 this.cntnt += '</div></div>';

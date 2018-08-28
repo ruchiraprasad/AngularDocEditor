@@ -16,7 +16,6 @@ export class TitleBar {
     private print: Button;
     private open: Button;
     private testSave: Button;
-    private testOpen: Button;
     private documentEditor: DocumentEditor;
     private testDoc: string;
     private updatedStr: string = "";
@@ -55,8 +54,6 @@ export class TitleBar {
             this.open.element.style.display = 'none';
         }
 
-
-        this.testOpen = this.addButton('', 'Test Open', btnStyles, 'de-test', 'Test Open', false) as Button;
         this.testSave = this.addButton('', 'Save Template', btnStyles, 'de-test', 'Save Template', false) as Button;
     }
     private setTooltipForPopup(): void {
@@ -94,7 +91,6 @@ export class TitleBar {
             this.updateDocumentEditorTitle();
         });
 
-        this.testOpen.element.addEventListener('click', this.onTestOpen);
         this.testSave.element.addEventListener('click', this.onTestSave);
     }
     private updateDocumentEditorTitle = (): void => {
@@ -155,11 +151,5 @@ export class TitleBar {
                 console.log('New Template id: ' + data)
             });
         }
-    }
-
-    private onTestOpen = (): void => {
-        //this.documentEditor.open(this.testDoc);
-        //alert(this.updatedStr);
-        alert(this.docTemplate.id);
     }
 }
