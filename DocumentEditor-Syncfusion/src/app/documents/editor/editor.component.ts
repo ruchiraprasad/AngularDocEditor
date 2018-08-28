@@ -374,8 +374,11 @@ export class EditorComponent {
     private onSelectionChange(): void {
         if (this.documentEditor.selection) {
             this.showPropertiesPaneOnSelection();
-            this.statusBar.startPage = this.documentEditor.selection.startPage;
-            this.statusBar.updatePageNumber();
+
+            if (this.statusBar) {
+                this.statusBar.startPage = this.documentEditor.selection.startPage;
+                this.statusBar.updatePageNumber();
+            }
         }
         this.isRetrieving = false;
     }
