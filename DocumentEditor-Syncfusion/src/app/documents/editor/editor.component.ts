@@ -1020,20 +1020,21 @@ export class EditorComponent {
             } else {
                 let urlStr = "";
                 if(this.isTemplateEditing){
-                    urlStr="http://localhost:52061/api/templates/"
+                    urlStr="http://localhost:52061/api/templates/";
                 }
                 else{
-                    urlStr="http://localhost:52061/api/templates/document/"
+                    urlStr="http://localhost:52061/api/templates/document/";
                 }
-                this.httpClient.get<string>(urlStr + selectedItemId)
+                this.httpClient.get<Template>(urlStr + selectedItemId)
                 .subscribe(data => {
                     if(this.isTemplateEditing){
                         this.titleBar.saveTemplate=true;
                         this.titleBar.docTemplate.id = parseInt(selectedItemId);
                     }
                     
-                    console.log(data)
-                    this.documentEditor.open(JSON.stringify(data));
+                    console.log(data);
+                    // this.documentEditor.open(JSON.stringify(data.templateContent));
+                    this.documentEditor.open(data.templateContent);
                 });
             }
         } else {

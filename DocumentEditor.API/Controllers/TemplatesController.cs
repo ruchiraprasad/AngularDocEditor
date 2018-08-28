@@ -33,7 +33,7 @@ namespace DocumentEditor.API.Controllers
             using (var db = new TestDocDbContext())
             {
                 var template = db.Templates.FirstOrDefault(x => x.Id == id);
-                return Ok(template.TemplateContent);
+                return Ok(template);
             }
         }
 
@@ -43,7 +43,8 @@ namespace DocumentEditor.API.Controllers
             using (var db = new TestDocDbContext())
             {
                 var template = db.Templates.FirstOrDefault(x => x.Id == id);
-                return Ok(GenerateDocumentfromTemplate(template.TemplateContent));
+                template.TemplateContent = GenerateDocumentfromTemplate(template.TemplateContent);
+                return Ok(template);
             }
         }
 
