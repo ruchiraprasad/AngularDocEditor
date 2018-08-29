@@ -120,8 +120,8 @@ export class TitleBar {
         }
     }
     private onPrint = (): void => {
-        console.log(this.documentEditor.serialize())
-        //this.documentEditor.print();
+        //console.log(this.documentEditor.serialize())
+        this.documentEditor.print();
     }
     private onExportClick = (args: MenuEventArgs): void => {
         let value: string = args.item.id;
