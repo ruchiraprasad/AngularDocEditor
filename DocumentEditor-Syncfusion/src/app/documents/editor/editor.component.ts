@@ -1034,6 +1034,7 @@ export class EditorComponent {
                     
                     console.log(data);
                     // this.documentEditor.open(JSON.stringify(data.templateContent));
+                    this.documentEditor.documentName=data.templateName;
                     this.documentEditor.open(data.templateContent);
                 });
             }
