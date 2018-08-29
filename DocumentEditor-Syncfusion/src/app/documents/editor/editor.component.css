@@ -860,6 +860,7 @@ body {
     border: 1px solid #D4D4D4;
     border-radius: 4px;
     padding: 1px;
+    padding-top: 40px !important;
 }
 
 .e-de-ndlg-target .selection {
@@ -1327,3 +1328,19 @@ body {
 {
     text-transform: none !important; 
 }
+ 
+ #dialogContainer
+{
+    width: 1265px !important; 
+    height:700px !important;
+    max-height: 700px !important;
+}
+
+.e-de-ndlg-target .template {
+    width: 165px !important; 
+    height: 100px !important; 
+    text-align: center;
+    cursor: pointer;
+} 
+
+
